@@ -1,6 +1,7 @@
 'use client'
 
 import { urlFor } from '@/lib/sanity.image'
+import Image from 'next/image'
 import TrustIndicators from './TrustIndicators'
 import { HomepageData, HeroCTA } from '../lib/types'
 
@@ -23,10 +24,12 @@ export default function Hero({ data }: HeroProps) {
       {/* Background Image Overlay */}
       {data.heroBg && (
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
+            fill
+            priority
             src={urlFor(data.heroBg).url()}
             alt="Premium joinery craftsmanship"
-            className="w-full h-full object-cover opacity-30"
+            className="object-cover opacity-30"
           />
           <div className="absolute inset-0 z-10 bg-[radial-gradient(60%_50%_at_50%_40%,rgba(0,12,24,0.60),rgba(0,10,20,0.85))]" />
         </div>
