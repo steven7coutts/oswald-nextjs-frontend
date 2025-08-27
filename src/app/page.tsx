@@ -134,7 +134,7 @@ export default async function Home() {
                     Oswald Joinery & Contractors is a Perth-based joinery business dedicated to delivering exceptional workmanship with a personal touch. Led by Dougie Oswald, we combine years of hands-on experience with a modern approach to design, materials, and customer service.
                   </p>
                   <p className="text-lg text-gray-600 leading-relaxed">
-                    Whether it's a single room upgrade or a large-scale renovation, our focus is always the same: honest advice, flawless finishes, and long-lasting results.
+                    Whether it&apos;s a single room upgrade or a large-scale renovation, our focus is always the same: honest advice, flawless finishes, and long-lasting results.
                   </p>
                 </div>
                 
