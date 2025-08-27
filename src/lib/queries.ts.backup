@@ -1,0 +1,91 @@
+import { groq } from 'next-sanity'
+
+export const homepageQuery = groq`*[_type == "homepage"][0]{
+  heroTitle, 
+  heroSubtitle, 
+  heroBg, 
+  heroCTAs[]{
+    label,
+    href
+  },
+  servicesIntro, 
+  portfolioIntro,
+  aboutHeading, 
+  aboutBody, 
+  aboutImage,
+  missionTitle, 
+  missionValues[]{
+    title,
+    body
+  },
+  contactIntro, 
+  mapEmbedUrl,
+  trustIndicators[]{
+    number,
+    label
+  },
+  featuredServices[]->{title, category, icon, slug, excerpt},
+  featuredProjects[]->{title, location, cover, slug, summary},
+  "reviews": *[_type == "testimonial" && featured == true] | order(rating desc, _createdAt desc)[0...5]{
+    _id,
+    client,
+    quote,
+    rating,
+    platform,
+    verified,
+    featured,
+    externalUrl,
+    reviewDate
+  },
+  seo
+}`
+
+export const settingsQuery = groq`*[_type == "siteSettings"][0]{
+  brandName, 
+  logo, 
+  phone, 
+  email, 
+  address, 
+  hours, 
+  social[]{
+    label,
+    url
+  }, 
+  seo
+}`
+
+export const servicesQuery = groq`*[_type == "service"]|order(title asc){
+  title, 
+  category, 
+  icon, 
+  slug, 
+  excerpt
+}`
+
+export const locationsQuery = groq`*[_type == "location"]|order(name asc){
+  name, 
+  slug
+}`
+
+export const projectsQuery = groq`*[_type == "project"]|order(_createdAt desc){
+  title, 
+  location, 
+  cover, 
+  slug, 
+  summary, 
+  services[]->{title, category}
+}`
+
+export const testimonialsQuery = groq`*[_type == "testimonial"]|order(featured desc, rating desc, _createdAt desc){
+  _id,
+  client, 
+  quote, 
+  rating, 
+  platform,
+  verified,
+  featured,
+  externalUrl,
+  reviewDate,
+  order,
+  project->{title}
+}`
