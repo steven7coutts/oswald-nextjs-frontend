@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
+  <!-- Main star shape -->
+  <path d="M12 2l2.955 7.77L23 11.27l-6 4.36 2.29 7.37L12 18.77 4.71 23l2.29-7.37-6-4.36 8.045-1.5L12 2z" fill="#00B67A"/>
+  
+  <!-- Inner detail for depth effect -->
+  <path d="M12 4.5l2.2 5.77L18.5 10.5l-4.5 3.27 1.72 5.53L12 17.5l-3.72 1.8 1.72-5.53L6 10.5l4.3-.23L12 4.5z" fill="#009E6B"/>
+</svg>

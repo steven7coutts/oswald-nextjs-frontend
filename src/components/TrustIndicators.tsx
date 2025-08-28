@@ -42,7 +42,7 @@ export default function TrustIndicators({ className = '' }: TrustIndicatorsProps
       icon: (
         // Use <img> for runtime fallback if asset missing
         <img
-          src="/trustpilot.svg"
+          src="/images/trustpilot-logo.svg"
           alt="Trustpilot"
           width={24}
           height={24}
