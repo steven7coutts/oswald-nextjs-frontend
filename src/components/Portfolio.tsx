@@ -63,14 +63,14 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           )}
 
           {/* Location & Project Type */}
-          <div className="absolute top-4 left-4 space-y-2">
-            <div className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#3A2B1A] font-accent text-sm rounded-full">
+          <div className="absolute top-4 left-4 flex flex-wrap gap-2 max-w-[80%]">
+            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#3A2B1A] font-accent text-sm rounded-full">
               📍 {project.location}
-            </div>
+            </span>
             {project.projectType && (
-              <div className="px-3 py-1 bg-[#3A2B1A]/90 text-white font-accent text-sm rounded-full">
+              <span className="px-3 py-1 bg-[#3A2B1A]/90 text-white font-accent text-sm rounded-full">
                 🏗️ {project.projectType}
-              </div>
+              </span>
             )}
           </div>
 
@@ -168,11 +168,11 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-8 py-4 bg-[#C5862B] text-[#3A2B1A] rounded-full font-accent font-semibold hover:bg-[#C5862B]/90 transition-colors duration-300 shadow-lg">
+            <a href="#contact" className="px-8 py-4 bg-[#C5862B] text-[#3A2B1A] rounded-full font-accent font-semibold hover:bg-[#C5862B]/90 transition-colors duration-300 shadow-lg">
               Get Similar Quote
-            </button>
-            <button className="px-8 py-4 bg-[#3A2B1A] text-white rounded-full font-accent font-semibold hover:bg-[#6B4226] transition-colors duration-300 shadow-lg">
-              View More Projects
+            </a>
+            <button onClick={onClose} className="px-8 py-4 bg-[#3A2B1A] text-white rounded-full font-accent font-semibold hover:bg-[#6B4226] transition-colors duration-300 shadow-lg">
+              Close
             </button>
           </div>
         </div>
@@ -349,17 +349,17 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                   )}
                   <div className="absolute inset-0 bg-[#3A2B1A]/20 group-hover:bg-[#3A2B1A]/40 transition-colors duration-500"></div>
                   
-                  {/* Location Badge */}
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-white/90 backdrop-blur-sm text-[#3A2B1A] font-accent text-sm rounded-full">
-                    {project.location}
+                  {/* Badges */}
+                  <div className="absolute top-4 left-4 flex flex-wrap gap-2 max-w-[80%]">
+                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#3A2B1A] font-accent text-sm rounded-full">
+                      {project.location}
+                    </span>
+                    {project.projectType && (
+                      <span className="px-3 py-1 bg-[#3A2B1A]/90 text-white font-accent text-sm rounded-full">
+                        {project.projectType}
+                      </span>
+                    )}
                   </div>
-
-                  {/* Project Type Badge */}
-                  {project.projectType && (
-                    <div className="absolute top-4 left-20 px-3 py-1 bg-[#3A2B1A]/90 text-white font-accent text-sm rounded-full">
-                      {project.projectType}
-                    </div>
-                  )}
 
                   {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[#3A2B1A]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
@@ -418,15 +418,7 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
             Showing {filteredProjects.length} of {projects.length} projects
           </div>
 
-          {/* CTA Section */}
-          <div className="text-center mt-16">
-            <div className="inline-flex items-center gap-3 px-8 py-4 bg-[#C5862B] text-[#3A2B1A] rounded-full font-accent font-semibold hover:bg-[#C5862B]/90 transition-colors duration-300 cursor-pointer group shadow-lg hover:shadow-xl">
-              <span>View Full Portfolio</span>
-              <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 5c7.18 0 13 5.82 13 13M6 11a7 7 0 017 7m-6 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-            </div>
-          </div>
+          {/* CTA Section removed for one-page site */}
         </div>
       </section>
 
