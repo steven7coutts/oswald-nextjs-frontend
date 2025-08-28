@@ -5,15 +5,47 @@ import { urlFor } from '@/lib/sanity.image'
 import Hero from '@/components/Hero'
 import ReviewsSection, { Review as FrontendReview } from '@/components/ReviewsSection'
 import Services from '@/components/Services'
+import Portfolio from '@/components/Portfolio'
 import { HomepageData, SiteSettings, Service, Project, MissionValue, Location, SocialLink } from '@/lib/types'
+import { unstable_cache } from 'next/cache'
+
+const getHomepageCached = unstable_cache(
+  async () => client.fetch(homepageQuery) as Promise<HomepageData>,
+  ['sanity:homepage'],
+  { tags: ['sanity:homepage'] }
+)
+
+const getSettingsCached = unstable_cache(
+  async () => client.fetch(settingsQuery) as Promise<SiteSettings>,
+  ['sanity:siteSettings'],
+  { tags: ['sanity:siteSettings'] }
+)
+
+const getServicesCached = unstable_cache(
+  async () => client.fetch(servicesQuery) as Promise<Service[]>,
+  ['sanity:service'],
+  { tags: ['sanity:service'] }
+)
+
+const getLocationsCached = unstable_cache(
+  async () => client.fetch(locationsQuery) as Promise<Location[]>,
+  ['sanity:location'],
+  { tags: ['sanity:location'] }
+)
+
+const getProjectsCached = unstable_cache(
+  async () => client.fetch(projectsQuery) as Promise<Project[]>,
+  ['sanity:project'],
+  { tags: ['sanity:project'] }
+)
 
 export default async function Home() {
   const [home, settings, services, locations, projects] = await Promise.all([
-    client.fetch(homepageQuery) as Promise<HomepageData>,
-    client.fetch(settingsQuery) as Promise<SiteSettings>,
-    client.fetch(servicesQuery) as Promise<Service[]>,
-    client.fetch(locationsQuery) as Promise<Location[]>,
-    client.fetch(projectsQuery) as Promise<Project[]>,
+    getHomepageCached(),
+    getSettingsCached(),
+    getServicesCached(),
+    getLocationsCached(),
+    getProjectsCached(),
   ])
 
   return (
@@ -80,49 +112,7 @@ export default async function Home() {
         })) as FrontendReview[]} />
 
         {/* PORTFOLIO */}
-        <section id="portfolio" className="py-24 bg-gray-50">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="text-center mb-16">
-              <span className="inline-block px-4 py-2 text-sm font-semibold text-yellow-600 bg-yellow-50 rounded-full mb-6 border border-yellow-200">
-                Our Work
-              </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-6">
-                See Our Craftsmanship in Action
-              </h2>
-              <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {home?.portfolioIntro || 'Our portfolio showcases the detail, finish, and care that goes into every Oswald project.'}
-              </p>
-            </div>
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {(home?.featuredProjects || projects || []).slice(0, 6).map((p: Project) => (
-                <article key={p.title} className="group overflow-hidden rounded-2xl border border-gray-200 bg-white hover:shadow-xl transition-all duration-300">
-                  {p.cover ? (
-                    <Image
-                      src={urlFor(p.cover).width(800).height(600).url()}
-                      alt={p.title}
-                      width={800}
-                      height={600}
-                      className="aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    <div className="aspect-[4/3] bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center">
-                      <span className="text-6xl text-yellow-400">🏠</span>
-                    </div>
-                  )}
-                  <div className="p-6">
-                    <h3 className="text-xl font-heading font-semibold text-gray-900 mb-3">{p.title}</h3>
-                    {p.location && (
-                      <span className="inline-block px-3 py-1 text-sm font-medium text-yellow-600 bg-yellow-50 rounded-full border border-yellow-200 mb-3">
-                        {p.location}
-                      </span>
-                    )}
-                    {p.summary && <p className="text-gray-600 text-sm leading-relaxed">{p.summary}</p>}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+        <Portfolio data={home} projects={projects || []} />
 
         {/* ABOUT & MISSION */}
         <section id="about" className="py-24 bg-white">
