@@ -31,7 +31,7 @@ export default function Contact({ data, siteSettings }: ContactProps) {
           <div className="bg-brand-beige/30 rounded-2xl p-8 border border-brand-beige/50">
             <h3 className="font-heading text-2xl font-bold text-brand-dark mb-6">Request a Free Quote</h3>
             
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block font-accent font-semibold text-brand-dark mb-2">Name *</label>
@@ -87,12 +87,17 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                 ></textarea>
               </div>
               
-              <button
-                type="submit"
-                className="w-full bg-brand-gold hover:bg-brand-gold/90 text-brand-dark font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
-              >
-                Send Message
-              </button>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <a href="#services" className="w-full text-center bg-white border border-brand-gold text-brand-dark font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 hover:bg-brand-beige/40">
+                  Explore Services
+                </a>
+                <button
+                  type="submit"
+                  className="w-full bg-brand-gold hover:bg-brand-gold/90 text-brand-dark font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+                >
+                  Send Message
+                </button>
+              </div>
             </form>
           </div>
 

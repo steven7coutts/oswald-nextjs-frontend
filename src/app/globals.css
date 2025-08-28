@@ -32,6 +32,16 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+/* Smooth scroll across the site */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Account for fixed header when using hash links */
+section[id] {
+  scroll-margin-top: 100px;
+}
+
 /* Utilities */
 .text-shadow-soft {
   text-shadow: 0 1px 2px rgba(0, 0, 0, .35);
