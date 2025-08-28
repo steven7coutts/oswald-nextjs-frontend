@@ -75,7 +75,7 @@ export default function Contact({ data, siteSettings }: ContactProps) {
       } else {
         setSubmitStatus('error')
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
@@ -107,7 +107,7 @@ export default function Contact({ data, siteSettings }: ContactProps) {
             Start Your Project Today
           </h2>
           <p className="font-body text-xl text-brand-charcoal/80 max-w-3xl mx-auto leading-relaxed">
-            {data.contactIntro || 'Ready to discuss your next project? Get in touch and let\'s bring your ideas to life.'}
+            {data.contactIntro || 'Ready to discuss your next project? Get in touch and let&apos;s bring your ideas to life.'}
           </p>
         </div>
 
@@ -326,7 +326,7 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               {submitStatus === 'success' && (
                 <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-center">
                   <p className="font-medium">Thank you! Your enquiry has been sent successfully.</p>
-                  <p className="text-sm mt-1">We'll be in touch within 24 hours.</p>
+                  <p className="text-sm mt-1">We&apos;ll be in touch within 24 hours.</p>
                 </div>
               )}
               
