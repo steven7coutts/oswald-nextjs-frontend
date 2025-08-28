@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 
 interface TrustIndicatorsProps {
   className?: string
@@ -39,10 +40,7 @@ export default function TrustIndicators({ className = '' }: TrustIndicatorsProps
       id: 'trustpilot',
       name: 'Trustpilot',
       icon: (
-        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z"/>
-          <path d="M12 4l3.09 9.26L22 14.27l-6 5.87 1.18 7.88L12 19.77l-5.18 8.25L8 20.14 2 14.27l6.91-.99z"/>
-        </svg>
+        <Image src="/trustpilot.svg" alt="Trustpilot" width={24} height={24} />
       ),
       color: 'text-green-600',
       bgColor: 'bg-green-600',

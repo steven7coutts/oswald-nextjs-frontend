@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { SiteSettings } from '../lib/types'
+import Image from 'next/image'
+import { urlFor } from '../lib/sanity.image'
 
 interface HeaderProps {
   siteSettings: SiteSettings
@@ -41,11 +43,24 @@ export default function Header({ siteSettings }: HeaderProps) {
           {/* Logo */}
           <div className="flex items-center">
             <a href="#home" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                </svg>
-              </div>
+              {siteSettings?.logo ? (
+                <div className="w-12 h-12 relative rounded-lg overflow-hidden ring-1 ring-brand-beige/40">
+                  <Image
+                    src={urlFor(siteSettings.logo).width(900).height(900).fit('crop').url()}
+                    alt={siteSettings.brandName || 'Oswald Joinery'}
+                    fill
+                    className="object-cover"
+                    sizes="48px"
+                    priority
+                  />
+                </div>
+              ) : (
+                <div className="w-10 h-10 bg-brand-gold rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <svg className="w-6 h-6 text-brand-dark" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                  </svg>
+                </div>
+              )}
               <div className={`font-heading font-bold text-xl transition-colors duration-300 ${
                 isScrolled ? 'text-brand-dark' : 'text-white'
               }`}>
