@@ -1,13 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidateTag } from 'next/cache'
 
+interface SanityWebhookDocument {
+  _type?: string
+}
+
+interface SanityWebhookPayload {
+  secret?: string
+  _type?: string
+  type?: string
+  document?: SanityWebhookDocument
+}
+
 export async function POST(request: NextRequest) {
   const secret = process.env.SANITY_REVALIDATE_SECRET
   if (!secret) {
     return NextResponse.json({ ok: false, error: 'Missing secret' }, { status: 500 })
   }
 
-  let payload: any
+  let payload: SanityWebhookPayload
   try {
     payload = await request.json()
   } catch {
