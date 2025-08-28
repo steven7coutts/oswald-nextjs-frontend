@@ -6,6 +6,7 @@ import Hero from '@/components/Hero'
 import ReviewsSection, { Review as FrontendReview } from '@/components/ReviewsSection'
 import Services from '@/components/Services'
 import Portfolio from '@/components/Portfolio'
+import Contact from '@/components/Contact'
 import { HomepageData, SiteSettings, Service, Project, MissionValue, Location, SocialLink } from '@/lib/types'
 import { unstable_cache } from 'next/cache'
 
@@ -221,6 +222,7 @@ export default async function Home() {
         </section>
 
         {/* CONTACT - Now handled by Contact component */}
+        <Contact data={home} siteSettings={settings} />
 
         {/* FOOTER */}
         <footer className="border-t border-gray-200 bg-gray-900 text-white py-20">
