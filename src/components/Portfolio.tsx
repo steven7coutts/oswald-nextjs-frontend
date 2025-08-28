@@ -1,7 +1,9 @@
 'use client'
 
 import { useState, useMemo } from 'react'
-import { HomepageData, Project } from '../lib/types'
+import { HomepageData, Project, SanityImage } from '../lib/types'
+import Image from 'next/image'
+import { urlFor } from '../lib/sanity.image'
 
 interface PortfolioProps {
   data: HomepageData
@@ -39,7 +41,18 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
         </button>
 
         {/* Project Header */}
-        <div className="relative h-64 md:h-80 bg-gradient-to-br from-[#F4E1C6] to-[#C5862B]/20 rounded-t-2xl overflow-hidden">
+        <div className="relative h-64 md:h-80 rounded-t-2xl overflow-hidden">
+          {project.cover ? (
+            <Image
+              src={urlFor(project.cover as SanityImage).width(1600).height(900).fit('crop').url()}
+              alt={project.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+            />
+          ) : (
+            <div className="w-full h-full bg-gradient-to-br from-[#F4E1C6] to-[#C5862B]/20" />
+          )}
           {/* Featured Badge */}
           {project.featured && (
             <div className="absolute top-4 left-4 z-10">
@@ -121,14 +134,37 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           {project.cover && (
             <div className="mb-8">
               <h4 className="font-heading text-xl font-bold text-[#3A2B1A] mb-4">Project Image</h4>
-              <div className="bg-gradient-to-br from-[#F4E1C6] to-[#C5862B]/20 rounded-lg overflow-hidden aspect-video">
-                {/* Placeholder for actual cover image */}
-                <div className="w-full h-full flex items-center justify-center text-[#C5862B] text-4xl">
-                  🖼️
-                </div>
+              <div className="rounded-lg overflow-hidden aspect-video relative">
+                <Image
+                  src={urlFor(project.cover as SanityImage).width(1600).height(900).fit('crop').url()}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw"
+                />
               </div>
             </div>
           )}
+
+          {/* Gallery */}
+          {(project.gallery || project.images)?.length ? (
+            <div className="mb-8">
+              <h4 className="font-heading text-xl font-bold text-[#3A2B1A] mb-4">Gallery</h4>
+              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {((project.gallery || project.images) as SanityImage[]).slice(0, 9).map((img, idx) => (
+                  <div key={idx} className="relative aspect-[4/3] rounded-lg overflow-hidden">
+                    <Image
+                      src={urlFor(img).width(800).height(600).fit('crop').url()}
+                      alt={img.alt || project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 33vw"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -299,7 +335,18 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                 )}
 
                 {/* Project Image */}
-                <div className="aspect-[4/3] bg-gradient-to-br from-[#F4E1C6] to-[#C5862B]/20 relative overflow-hidden">
+                <div className="aspect-[4/3] relative overflow-hidden">
+                  {project.cover ? (
+                    <Image
+                      src={urlFor(project.cover as SanityImage).width(800).height(600).fit('crop').url()}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    />
+                  ) : (
+                    <div className="w-full h-full bg-gradient-to-br from-[#F4E1C6] to-[#C5862B]/20" />
+                  )}
                   <div className="absolute inset-0 bg-[#3A2B1A]/20 group-hover:bg-[#3A2B1A]/40 transition-colors duration-500"></div>
                   
                   {/* Location Badge */}

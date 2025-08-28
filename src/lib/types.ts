@@ -29,6 +29,8 @@ export interface Project {
   location: string
   projectType?: string
   cover?: SanityImage
+  gallery?: SanityImage[]
+  images?: SanityImage[]
   slug?: string
   summary: string
   featured?: boolean

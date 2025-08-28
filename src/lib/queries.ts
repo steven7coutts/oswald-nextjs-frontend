@@ -78,6 +78,8 @@ export const projectsQuery = groq`*[_type == "project"]|order(featured desc, ord
   location, 
   projectType,
   cover, 
+  gallery[]{..., asset->},
+  images[]{..., asset->},
   slug, 
   summary, 
   featured,
