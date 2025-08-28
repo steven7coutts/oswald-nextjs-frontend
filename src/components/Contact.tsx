@@ -100,21 +100,21 @@ export default function Contact({ data, siteSettings }: ContactProps) {
       <div className="max-w-7xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-20">
-          <div className="inline-block px-4 py-2 bg-brand-gold/20 border border-brand-gold/30 rounded-full text-brand-gold font-accent text-sm uppercase tracking-wider mb-6">
+          <div className="inline-block px-4 py-2 bg-[#C5862B]/20 border border-[#C5862B]/30 rounded-full text-[#C5862B] font-accent text-sm uppercase tracking-wider mb-6">
             Get In Touch
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-brand-dark mb-6">
+          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-[#3A2B1A] mb-6">
             Start Your Project Today
           </h2>
-          <p className="font-body text-xl text-brand-charcoal/80 max-w-3xl mx-auto leading-relaxed">
+          <p className="font-body text-xl text-[#2E2B29] max-w-3xl mx-auto leading-relaxed">
             {data.contactIntro || 'Ready to discuss your next project? Get in touch and let&apos;s bring your ideas to life.'}
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
           {/* Contact Form */}
-          <div className="bg-brand-beige/30 rounded-2xl p-8 border border-brand-beige/50">
-            <h3 className="font-heading text-2xl font-bold text-brand-dark mb-6">Request a Free Quote</h3>
+          <div className="bg-[#F4E1C6]/30 rounded-2xl p-8 border border-[#F4E1C6]/50">
+            <h3 className="font-heading text-2xl font-bold text-[#3A2B1A] mb-6">Request a Free Quote</h3>
             
             <form className="space-y-6" onSubmit={handleSubmit}>
               {/* Hidden honeypot field */}
@@ -130,25 +130,25 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-accent font-semibold text-brand-dark mb-2">Name *</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
                     placeholder="Your full name"
                   />
                   {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                 </div>
                 <div>
-                  <label className="block font-accent font-semibold text-brand-dark mb-2">Phone *</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Phone *</label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
                     placeholder="Your phone number"
                   />
                   {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
@@ -157,25 +157,25 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-accent font-semibold text-brand-dark mb-2">Email *</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Email *</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
                     placeholder="your.email@example.com"
                   />
                   {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
                 </div>
                 <div>
-                  <label className="block font-accent font-semibold text-brand-dark mb-2">Postcode *</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Postcode *</label>
                   <input
                     type="text"
                     required
                     value={formData.postcode}
                     onChange={(e) => setFormData(prev => ({ ...prev, postcode: e.target.value }))}
-                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
                     placeholder="e.g. PH1 1AA"
                   />
                   {errors.postcode && <p className="text-red-500 text-sm mt-1">{errors.postcode}</p>}
@@ -183,11 +183,11 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               </div>
               
               <div>
-                <label className="block font-accent font-semibold text-brand-dark mb-2">Service Required *</label>
+                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Service Required *</label>
                 <select 
                   value={formData.service}
                   onChange={(e) => setFormData(prev => ({ ...prev, service: e.target.value }))}
-                  className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                  className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
                 >
                   <option value="">Select a service</option>
                   <option value="kitchens">Kitchens</option>
@@ -204,11 +204,11 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block font-accent font-semibold text-brand-dark mb-2">Budget Range</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Budget Range</label>
                   <select
                     value={formData.budget}
                     onChange={(e) => setFormData(prev => ({ ...prev, budget: e.target.value }))}
-                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29]"
                   >
                     <option value="">Select budget range</option>
                     <option value="under-5k">Under £5,000</option>
@@ -219,11 +219,11 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-accent font-semibold text-brand-dark mb-2">Preferred Contact Time</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Preferred Contact Time</label>
                   <select
                     value={formData.preferredTime}
                     onChange={(e) => setFormData(prev => ({ ...prev, preferredTime: e.target.value }))}
-                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29]"
                   >
                     <option value="">Select preferred time</option>
                     <option value="morning">Morning (9am-12pm)</option>
@@ -235,13 +235,13 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               </div>
               
               <div>
-                <label className="block font-accent font-semibold text-brand-dark mb-2">Project Details *</label>
+                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Project Details *</label>
                 <textarea
                   rows={4}
                   required
                   value={formData.projectDetails}
                   onChange={(e) => setFormData(prev => ({ ...prev, projectDetails: e.target.value }))}
-                  className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body resize-none"
+                  className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body resize-none text-[#2E2B29] placeholder-[#6B4226]/60"
                   placeholder="Tell us about your project..."
                 ></textarea>
                 {errors.projectDetails && <p className="text-red-500 text-sm mt-1">{errors.projectDetails}</p>}
@@ -249,8 +249,8 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               
               {/* File Upload */}
               <div>
-                <label className="block font-accent font-semibold text-brand-dark mb-2">Upload Photos/Plans (Optional)</label>
-                <div className="border-2 border-dashed border-brand-beige/50 rounded-lg p-6 text-center hover:border-brand-gold/50 transition-colors duration-300">
+                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Upload Photos/Plans (Optional)</label>
+                <div className="border-2 border-dashed border-[#F4E1C6]/50 rounded-lg p-6 text-center hover:border-[#C5862B]/50 transition-colors duration-300">
                   <input
                     type="file"
                     multiple
@@ -260,13 +260,13 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                     id="file-upload"
                   />
                   <label htmlFor="file-upload" className="cursor-pointer">
-                    <div className="text-brand-gold mb-2">
+                    <div className="text-[#C5862B] mb-2">
                       <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
                     </div>
-                    <p className="text-brand-dark font-medium">Click to upload files</p>
-                    <p className="text-brand-charcoal/60 text-sm">Images, PDFs up to 10MB total</p>
+                    <p className="text-[#3A2B1A] font-medium">Click to upload files</p>
+                    <p className="text-[#2E2B29]/60 text-sm">Images, PDFs up to 10MB total</p>
                   </label>
                 </div>
                 
@@ -274,8 +274,8 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                 {formData.files.length > 0 && (
                   <div className="mt-4 space-y-2">
                     {formData.files.map((file, index) => (
-                      <div key={index} className="flex items-center justify-between p-3 bg-brand-beige/20 rounded-lg">
-                        <span className="text-brand-dark text-sm truncate">{file.name}</span>
+                      <div key={index} className="flex items-center justify-between p-3 bg-[#F4E1C6]/20 rounded-lg">
+                        <span className="text-[#3A2B1A] text-sm truncate">{file.name}</span>
                         <button
                           type="button"
                           onClick={() => removeFile(index)}
@@ -298,9 +298,9 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                   id="consent"
                   checked={formData.consent}
                   onChange={(e) => setFormData(prev => ({ ...prev, consent: e.target.checked }))}
-                  className="mt-1 w-4 h-4 text-brand-gold border-brand-beige/50 rounded focus:ring-brand-gold focus:ring-2"
+                  className="mt-1 w-4 h-4 text-[#C5862B] border-[#F4E1C6]/50 rounded focus:ring-[#C5862B] focus:ring-2"
                 />
-                <label htmlFor="consent" className="text-brand-dark text-sm">
+                <label htmlFor="consent" className="text-[#3A2B1A] text-sm">
                   I consent to Oswald Joinery contacting me about my enquiry and storing my details for this purpose. *
                 </label>
               </div>
@@ -310,11 +310,11 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-brand-gold hover:bg-brand-gold/90 disabled:bg-brand-gold/50 text-brand-dark font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl disabled:transform-none disabled:cursor-not-allowed"
+                className="w-full bg-[#C5862B] hover:bg-[#C5862B]/90 disabled:bg-[#C5862B]/50 text-[#3A2B1A] font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl disabled:transform-none disabled:cursor-not-allowed"
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center gap-2">
-                    <div className="w-5 h-5 border-2 border-brand-dark/20 border-t-brand-dark rounded-full animate-spin"></div>
+                    <div className="w-5 h-5 border-2 border-[#3A2B1A]/20 border-t-[#3A2B1A] rounded-full animate-spin"></div>
                     Sending...
                   </div>
                 ) : (
@@ -342,55 +342,55 @@ export default function Contact({ data, siteSettings }: ContactProps) {
           {/* Contact Information */}
           <div className="space-y-8">
             <div>
-              <h3 className="font-heading text-2xl font-bold text-brand-dark mb-6">Contact Information</h3>
+              <h3 className="font-heading text-2xl font-bold text-[#3A2B1A] mb-6">Contact Information</h3>
               
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-brand-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-[#C5862B]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-[#C5862B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="font-accent font-semibold text-brand-dark">Phone</div>
-                    <div className="font-body text-brand-charcoal/80">{siteSettings.phone || '01738 000000'}</div>
+                    <div className="font-accent font-semibold text-[#3A2B1A]">Phone</div>
+                    <div className="font-body text-[#2E2B29]/80">{siteSettings.phone || '01738 000000'}</div>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-brand-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-[#C5862B]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-[#C5862B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="font-accent font-semibold text-brand-dark">Email</div>
-                    <div className="font-body text-brand-charcoal/80">{siteSettings.email || 'info@oswaldjoinery.co.uk'}</div>
+                    <div className="font-accent font-semibold text-[#3A2B1A]">Email</div>
+                    <div className="font-body text-[#2E2B29]/80">{siteSettings.email || 'info@oswaldjoinery.co.uk'}</div>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-brand-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-[#C5862B]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-[#C5862B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="font-accent font-semibold text-brand-dark">Address</div>
-                    <div className="font-body text-brand-charcoal/80">{siteSettings.address || 'Perth, Perthshire'}</div>
+                    <div className="font-accent font-semibold text-[#3A2B1A]">Address</div>
+                    <div className="font-body text-[#2E2B29]/80">{siteSettings.address || 'Perth, Perthshire'}</div>
                   </div>
                 </div>
                 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-brand-gold/20 rounded-full flex items-center justify-center flex-shrink-0">
-                    <svg className="w-6 h-6 text-brand-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-[#C5862B]/20 rounded-full flex items-center justify-center flex-shrink-0">
+                    <svg className="w-6 h-6 text-[#C5862B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   <div>
-                    <div className="font-accent font-semibold text-brand-dark">Business Hours</div>
-                    <div className="font-body text-brand-charcoal/80">{siteSettings.hours || 'Mon–Fri 8am–6pm'}</div>
+                    <div className="font-accent font-semibold text-[#3A2B1A]">Business Hours</div>
+                    <div className="font-body text-[#2E2B29]/80">{siteSettings.hours || 'Mon–Fri 8am–6pm'}</div>
                   </div>
                 </div>
               </div>
@@ -398,13 +398,13 @@ export default function Contact({ data, siteSettings }: ContactProps) {
 
             {/* Service Areas */}
             <div>
-              <h4 className="font-heading text-xl font-bold text-brand-dark mb-4">Service Areas</h4>
-              <p className="font-body text-brand-charcoal/80 mb-4">
+              <h4 className="font-heading text-xl font-bold text-[#3A2B1A] mb-4">Service Areas</h4>
+              <p className="font-body text-[#2E2B29]/80 mb-4">
                 We proudly serve Perth and surrounding areas within 30 miles, including:
               </p>
               <div className="flex flex-wrap gap-2">
                 {['Perth', 'Scone', 'Dunkeld', 'Crieff', 'Stirling', 'Dundee'].map((location) => (
-                  <span key={location} className="px-3 py-1 bg-brand-gold/20 text-brand-dark font-accent text-sm rounded-full">
+                  <span key={location} className="px-3 py-1 bg-[#C5862B]/20 text-[#3A2B1A] font-accent text-sm rounded-full">
                     {location}
                   </span>
                 ))}
