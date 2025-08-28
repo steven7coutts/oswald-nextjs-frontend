@@ -40,7 +40,18 @@ export default function TrustIndicators({ className = '' }: TrustIndicatorsProps
       id: 'trustpilot',
       name: 'Trustpilot',
       icon: (
-        <Image src="/trustpilot.svg" alt="Trustpilot" width={24} height={24} />
+        // Use <img> for runtime fallback if asset missing
+        <img
+          src="/trustpilot.svg"
+          alt="Trustpilot"
+          width={24}
+          height={24}
+          onError={(e) => {
+            const target = e.currentTarget as HTMLImageElement
+            target.onerror = null
+            target.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%2300B67A"><path d="M12 2l2.955 7.77L23 11.27l-6 4.36 2.29 7.37L12 18.77 4.71 23l2.29-7.37-6-4.36 8.045-1.5L12 2z"/></svg>'
+          }}
+        />
       ),
       color: 'text-green-600',
       bgColor: 'bg-green-600',
