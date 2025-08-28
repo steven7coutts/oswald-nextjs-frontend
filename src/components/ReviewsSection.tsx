@@ -1,6 +1,6 @@
 'use client'
 
-interface Review {
+export interface Review {
   _id: string
   client: string
   quote: string

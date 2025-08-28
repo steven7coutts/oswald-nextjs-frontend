@@ -91,7 +91,7 @@ export default function Footer({ siteSettings, services }: FooterProps) {
             <div className="flex items-center gap-4">
               {siteSettings.social?.map((social: SocialLink) => (
                 <a
-                  key={social._key}
+                  key={social.url || social.label}
                   href={social.url}
                   target="_blank"
                   rel="noopener noreferrer"

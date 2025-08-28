@@ -3,9 +3,9 @@ import { homepageQuery, settingsQuery, servicesQuery, locationsQuery, projectsQu
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity.image'
 import Hero from '@/components/Hero'
-import ReviewsSection from '@/components/ReviewsSection'
+import ReviewsSection, { Review as FrontendReview } from '@/components/ReviewsSection'
 import Services from '@/components/Services'
-import { HomepageData, SiteSettings, Service, Project } from '@/lib/types'
+import { HomepageData, SiteSettings, Service, Project, MissionValue, Location, SocialLink } from '@/lib/types'
 
 export default async function Home() {
   const [home, settings, services, locations, projects] = await Promise.all([
@@ -68,7 +68,16 @@ export default async function Home() {
         <Services data={home} services={services} />
 
         {/* REVIEWS */}
-        <ReviewsSection reviews={home?.reviews || []} />
+        <ReviewsSection reviews={(home?.reviews || []).map((r) => ({
+          _id: r._id || r.client,
+          client: r.client,
+          quote: r.quote,
+          rating: r.rating,
+          platform: (r.platform === 'google' || r.platform === 'trustpilot' || r.platform === 'direct') ? r.platform : 'direct',
+          verified: Boolean(r.verified),
+          externalUrl: r.externalUrl,
+          reviewDate: r.reviewDate,
+        })) as FrontendReview[]} />
 
         {/* PORTFOLIO */}
         <section id="portfolio" className="py-24 bg-gray-50">

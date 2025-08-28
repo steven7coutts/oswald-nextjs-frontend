@@ -78,7 +78,17 @@ export async function fetchTrustpilotReviews(businessId: string, apiKey?: string
         logoUrl: businessData.logoUrl,
         websiteUrl: businessData.websiteUrl
       },
-      reviews: reviewsData.reviews.map((review: any) => ({
+      reviews: reviewsData.reviews.map((review: {
+        id: string
+        stars: number
+        title: string
+        text: string
+        consumer: { displayName: string; profileImageUrl?: string }
+        createdAt: string
+        isVerified: boolean
+        language: string
+        url: string
+      }) => ({
         id: review.id,
         stars: review.stars,
         title: review.title,

@@ -102,7 +102,7 @@ export function formatReviewDate(dateString: string): string {
 }
 
 // Legacy function for backward compatibility (deprecated)
-export async function fetchGoogleReviews(placeId: string, apiKey: string): Promise<any> {
+export async function fetchGoogleReviews(_placeId: string, _apiKey: string): Promise<null> {
   console.warn('fetchGoogleReviews is deprecated. Use fetchGoogleMyBusinessReviews instead.')
   return null
 }

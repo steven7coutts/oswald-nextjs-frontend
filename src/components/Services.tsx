@@ -1,20 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-
-interface Service {
-  _id: string
-  title: string
-  excerpt: string
-  category: 'residential' | 'commercial' | 'specialist'
-  serviceType: string
-  featured?: boolean
-  iconName?: string
-}
+import { Service as SharedService, HomepageData } from '@/lib/types'
 
 interface ServicesProps {
-  data: any
-  services: Service[]
+  data: HomepageData
+  services: SharedService[]
 }
 
 export default function Services({ data, services }: ServicesProps) {
