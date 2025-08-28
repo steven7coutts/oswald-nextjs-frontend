@@ -151,23 +151,24 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Ensure hooks are not called conditionally by avoiding early return
-  const safeProjects = useMemo(() => (Array.isArray(projects) ? projects : []), [projects])
-
   // Get all unique services for filtering
   const allServices = useMemo(() => {
     const serviceSet = new Set<string>()
-    safeProjects.forEach(project => {
-      project.services.forEach(service => {
-        serviceSet.add(service._id)
+    if (projects) {
+      projects.forEach(project => {
+        project.services.forEach(service => {
+          serviceSet.add(service._id)
+        })
       })
-    })
+    }
     return Array.from(serviceSet)
-  }, [safeProjects])
+  }, [projects])
 
   // Filter projects based on active filters
   const filteredProjects = useMemo(() => {
-    let filtered = safeProjects
+    if (!projects) return []
+    
+    let filtered = projects
 
     // Filter by category
     if (activeFilter !== 'all') {
@@ -184,7 +185,7 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
     }
 
     return filtered
-  }, [safeProjects, activeFilter, selectedService])
+  }, [projects, activeFilter, selectedService])
 
   // Handle project selection
   const handleProjectClick = (project: Project) => {
@@ -197,6 +198,8 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
     setIsModalOpen(false)
     setSelectedProject(null)
   }
+
+  if (!data || !projects) return null
 
   return (
     <>
@@ -217,15 +220,15 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
 
           {/* Filter Tabs */}
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            {([
-              { key: 'all', label: 'All Projects', count: safeProjects.length },
-              { key: 'residential', label: 'Residential', count: safeProjects.filter(p => p.services.some(s => s.category === 'residential')).length },
-              { key: 'commercial', label: 'Commercial', count: safeProjects.filter(p => p.services.some(s => s.category === 'commercial')).length },
-              { key: 'specialist', label: 'Specialist', count: safeProjects.filter(p => p.services.some(s => s.category === 'specialist')).length }
-            ] as { key: 'all' | 'residential' | 'commercial' | 'specialist'; label: string; count: number }[]).map((filter) => (
+            {[
+              { key: 'all', label: 'All Projects', count: projects.length },
+              { key: 'residential', label: 'Residential', count: projects.filter(p => p.services.some(s => s.category === 'residential')).length },
+              { key: 'commercial', label: 'Commercial', count: projects.filter(p => p.services.some(s => s.category === 'commercial')).length },
+              { key: 'specialist', label: 'Specialist', count: projects.filter(p => p.services.some(s => s.category === 'specialist')).length }
+            ].map((filter) => (
               <button
                 key={filter.key}
-                onClick={() => setActiveFilter(filter.key)}
+                onClick={() => setActiveFilter(filter.key as 'all' | 'residential' | 'commercial' | 'specialist')}
                 className={`
                   px-6 py-3 rounded-full font-accent font-semibold transition-all duration-300
                   ${activeFilter === filter.key
@@ -365,7 +368,7 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
 
           {/* Results Count */}
           <div className="text-center mt-8 text-[#2E2B29]/60 font-body">
-            Showing {filteredProjects.length} of {safeProjects.length} projects
+            Showing {filteredProjects.length} of {projects.length} projects
           </div>
 
           {/* CTA Section */}
