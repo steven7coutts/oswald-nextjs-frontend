@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { HomepageData, SiteSettings } from '../lib/types'
 
 interface ContactProps {
@@ -8,6 +9,90 @@ interface ContactProps {
 }
 
 export default function Contact({ data, siteSettings }: ContactProps) {
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    postcode: '',
+    service: '',
+    budget: '',
+    preferredTime: '',
+    projectDetails: '',
+    files: [] as File[],
+    consent: false,
+    honeypot: '' // Hidden anti-spam field
+  })
+  
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle')
+  
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+    
+    if (!formData.name.trim()) newErrors.name = 'Name is required'
+    if (!formData.phone.trim()) newErrors.phone = 'Phone is required'
+    if (!formData.email.trim()) newErrors.email = 'Email is required'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = 'Please enter a valid email'
+    if (!formData.postcode.trim()) newErrors.postcode = 'Postcode is required'
+    if (!formData.service) newErrors.service = 'Please select a service'
+    if (!formData.projectDetails.trim()) newErrors.projectDetails = 'Project details are required'
+    if (!formData.consent) newErrors.consent = 'Please accept the terms'
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+  
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    if (!validateForm()) return
+    
+    setIsSubmitting(true)
+    setSubmitStatus('idle')
+    
+    try {
+      const formDataToSend = new FormData()
+      Object.entries(formData).forEach(([key, value]) => {
+        if (key === 'files') {
+          formData.files.forEach(file => formDataToSend.append('files', file))
+        } else if (key !== 'honeypot') {
+          formDataToSend.append(key, value as string)
+        }
+      })
+      
+      const response = await fetch('/api/enquiry', {
+        method: 'POST',
+        body: formDataToSend
+      })
+      
+      if (response.ok) {
+        setSubmitStatus('success')
+        setFormData({
+          name: '', phone: '', email: '', postcode: '', service: '', budget: '', preferredTime: '', projectDetails: '', files: [], consent: false, honeypot: ''
+        })
+        setErrors({})
+      } else {
+        setSubmitStatus('error')
+      }
+    } catch (error) {
+      setSubmitStatus('error')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+  
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const newFiles = Array.from(e.target.files)
+      setFormData(prev => ({ ...prev, files: newFiles }))
+    }
+  }
+  
+  const removeFile = (index: number) => {
+    setFormData(prev => ({ ...prev, files: prev.files.filter((_, i) => i !== index) }))
+  }
+
   if (!data || !siteSettings) return null
 
   return (
@@ -22,7 +107,7 @@ export default function Contact({ data, siteSettings }: ContactProps) {
             Start Your Project Today
           </h2>
           <p className="font-body text-xl text-brand-charcoal/80 max-w-3xl mx-auto leading-relaxed">
-            {data.contactIntro || 'Ready to discuss your next project? Get in touch and let&apos;s bring your ideas to life.'}
+            {data.contactIntro || 'Ready to discuss your next project? Get in touch and let\'s bring your ideas to life.'}
           </p>
         </div>
 
@@ -31,73 +116,226 @@ export default function Contact({ data, siteSettings }: ContactProps) {
           <div className="bg-brand-beige/30 rounded-2xl p-8 border border-brand-beige/50">
             <h3 className="font-heading text-2xl font-bold text-brand-dark mb-6">Request a Free Quote</h3>
             
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Hidden honeypot field */}
+              <input
+                type="text"
+                name="honeypot"
+                value={formData.honeypot}
+                onChange={(e) => setFormData(prev => ({ ...prev, honeypot: e.target.value }))}
+                className="hidden"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+              
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block font-accent font-semibold text-brand-dark mb-2">Name *</label>
                   <input
                     type="text"
                     required
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
                     className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
                     placeholder="Your full name"
                   />
+                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
                 </div>
                 <div>
                   <label className="block font-accent font-semibold text-brand-dark mb-2">Phone *</label>
                   <input
                     type="tel"
                     required
+                    value={formData.phone}
+                    onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
                     className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
                     placeholder="Your phone number"
                   />
+                  {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block font-accent font-semibold text-brand-dark mb-2">Email *</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                    placeholder="your.email@example.com"
+                  />
+                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                </div>
+                <div>
+                  <label className="block font-accent font-semibold text-brand-dark mb-2">Postcode *</label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.postcode}
+                    onChange={(e) => setFormData(prev => ({ ...prev, postcode: e.target.value }))}
+                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                    placeholder="e.g. PH1 1AA"
+                  />
+                  {errors.postcode && <p className="text-red-500 text-sm mt-1">{errors.postcode}</p>}
                 </div>
               </div>
               
               <div>
-                <label className="block font-accent font-semibold text-brand-dark mb-2">Email *</label>
-                <input
-                  type="email"
-                  required
+                <label className="block font-accent font-semibold text-brand-dark mb-2">Service Required *</label>
+                <select 
+                  value={formData.service}
+                  onChange={(e) => setFormData(prev => ({ ...prev, service: e.target.value }))}
                   className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              
-              <div>
-                <label className="block font-accent font-semibold text-brand-dark mb-2">Service Required</label>
-                <select className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body">
-                  <option>Select a service</option>
-                  <option>Kitchens</option>
-                  <option>Wardrobes & Storage</option>
-                  <option>Doors & Windows</option>
-                  <option>Flooring</option>
-                  <option>Staircases</option>
-                  <option>Extensions & Renovations</option>
-                  <option>Commercial Joinery</option>
-                  <option>Other</option>
+                >
+                  <option value="">Select a service</option>
+                  <option value="kitchens">Kitchens</option>
+                  <option value="wardrobes">Wardrobes & Storage</option>
+                  <option value="doors">Doors & Windows</option>
+                  <option value="flooring">Flooring</option>
+                  <option value="staircases">Staircases</option>
+                  <option value="extensions">Extensions & Renovations</option>
+                  <option value="commercial">Commercial Joinery</option>
+                  <option value="other">Other</option>
                 </select>
+                {errors.service && <p className="text-red-500 text-sm mt-1">{errors.service}</p>}
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block font-accent font-semibold text-brand-dark mb-2">Budget Range</label>
+                  <select
+                    value={formData.budget}
+                    onChange={(e) => setFormData(prev => ({ ...prev, budget: e.target.value }))}
+                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                  >
+                    <option value="">Select budget range</option>
+                    <option value="under-5k">Under £5,000</option>
+                    <option value="5k-10k">£5,000 - £10,000</option>
+                    <option value="10k-25k">£10,000 - £25,000</option>
+                    <option value="25k-50k">£25,000 - £50,000</option>
+                    <option value="over-50k">Over £50,000</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="block font-accent font-semibold text-brand-dark mb-2">Preferred Contact Time</label>
+                  <select
+                    value={formData.preferredTime}
+                    onChange={(e) => setFormData(prev => ({ ...prev, preferredTime: e.target.value }))}
+                    className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body"
+                  >
+                    <option value="">Select preferred time</option>
+                    <option value="morning">Morning (9am-12pm)</option>
+                    <option value="afternoon">Afternoon (12pm-5pm)</option>
+                    <option value="evening">Evening (5pm-8pm)</option>
+                    <option value="anytime">Anytime</option>
+                  </select>
+                </div>
               </div>
               
               <div>
-                <label className="block font-accent font-semibold text-brand-dark mb-2">Project Details</label>
+                <label className="block font-accent font-semibold text-brand-dark mb-2">Project Details *</label>
                 <textarea
                   rows={4}
+                  required
+                  value={formData.projectDetails}
+                  onChange={(e) => setFormData(prev => ({ ...prev, projectDetails: e.target.value }))}
                   className="w-full px-4 py-3 border border-brand-beige/50 rounded-lg focus:border-brand-gold focus:ring-2 focus:ring-brand-gold/20 transition-all duration-300 font-body resize-none"
                   placeholder="Tell us about your project..."
                 ></textarea>
+                {errors.projectDetails && <p className="text-red-500 text-sm mt-1">{errors.projectDetails}</p>}
               </div>
               
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <a href="#services" className="w-full text-center bg-white border border-brand-gold text-brand-dark font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 hover:bg-brand-beige/40">
-                  Explore Services
-                </a>
-                <button
-                  type="submit"
-                  className="w-full bg-brand-gold hover:bg-brand-gold/90 text-brand-dark font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
-                >
-                  Send Message
-                </button>
+              {/* File Upload */}
+              <div>
+                <label className="block font-accent font-semibold text-brand-dark mb-2">Upload Photos/Plans (Optional)</label>
+                <div className="border-2 border-dashed border-brand-beige/50 rounded-lg p-6 text-center hover:border-brand-gold/50 transition-colors duration-300">
+                  <input
+                    type="file"
+                    multiple
+                    accept="image/*,.pdf"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    id="file-upload"
+                  />
+                  <label htmlFor="file-upload" className="cursor-pointer">
+                    <div className="text-brand-gold mb-2">
+                      <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                      </svg>
+                    </div>
+                    <p className="text-brand-dark font-medium">Click to upload files</p>
+                    <p className="text-brand-charcoal/60 text-sm">Images, PDFs up to 10MB total</p>
+                  </label>
+                </div>
+                
+                {/* File List */}
+                {formData.files.length > 0 && (
+                  <div className="mt-4 space-y-2">
+                    {formData.files.map((file, index) => (
+                      <div key={index} className="flex items-center justify-between p-3 bg-brand-beige/20 rounded-lg">
+                        <span className="text-brand-dark text-sm truncate">{file.name}</span>
+                        <button
+                          type="button"
+                          onClick={() => removeFile(index)}
+                          className="text-red-500 hover:text-red-700 transition-colors duration-300"
+                        >
+                          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
+              
+              {/* Consent Checkbox */}
+              <div className="flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  id="consent"
+                  checked={formData.consent}
+                  onChange={(e) => setFormData(prev => ({ ...prev, consent: e.target.checked }))}
+                  className="mt-1 w-4 h-4 text-brand-gold border-brand-beige/50 rounded focus:ring-brand-gold focus:ring-2"
+                />
+                <label htmlFor="consent" className="text-brand-dark text-sm">
+                  I consent to Oswald Joinery contacting me about my enquiry and storing my details for this purpose. *
+                </label>
+              </div>
+              {errors.consent && <p className="text-red-500 text-sm mt-1">{errors.consent}</p>}
+              
+              {/* Submit Button */}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-brand-gold hover:bg-brand-gold/90 disabled:bg-brand-gold/50 text-brand-dark font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl disabled:transform-none disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center gap-2">
+                    <div className="w-5 h-5 border-2 border-brand-dark/20 border-t-brand-dark rounded-full animate-spin"></div>
+                    Sending...
+                  </div>
+                ) : (
+                  'Send Message'
+                )}
+              </button>
+              
+              {/* Success/Error Messages */}
+              {submitStatus === 'success' && (
+                <div className="p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-center">
+                  <p className="font-medium">Thank you! Your enquiry has been sent successfully.</p>
+                  <p className="text-sm mt-1">We'll be in touch within 24 hours.</p>
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-lg text-red-800 text-center">
+                  <p className="font-medium">Something went wrong. Please try again.</p>
+                  <p className="text-sm mt-1">If the problem persists, please call us directly.</p>
+                </div>
+              )}
             </form>
           </div>
 
