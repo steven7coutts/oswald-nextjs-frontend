@@ -45,13 +45,12 @@ export default function Header({ siteSettings }: HeaderProps) {
           <div className="flex items-center">
             <a href="#home" className="flex items-center gap-4 group">
               {siteSettings?.logo && (
-                <div className="relative w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] lg:w-[200px] lg:h-[200px] overflow-visible -mt-6">
+                <div className="relative overflow-visible" style={{ width: '250px', height: '250px' }}>
                   <Image
                     src={urlFor(siteSettings.logo).width(900).height(900).fit('crop').url()}
                     alt={siteSettings.brandName || 'Oswald Joinery'}
                     fill
                     className="object-contain"
-                    sizes="(max-width: 640px) 120px, (max-width: 768px) 160px, 200px"
                     priority
                   />
                 </div>
