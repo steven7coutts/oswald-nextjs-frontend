@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { SiteSettings } from '../lib/types'
 import Image from 'next/image'
 
+
 interface HeaderProps {
   siteSettings: SiteSettings
 }
