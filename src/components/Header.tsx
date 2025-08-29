@@ -43,7 +43,7 @@ export default function Header({ siteSettings }: HeaderProps) {
           {/* Logo */}
           <div className="flex items-center">
             <a href="#home" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 relative rounded-lg overflow-hidden ring-1 ring-brand-beige/40">
+              <div className="w-[900px] h-[900px] relative overflow-hidden">
                 <Image
                   src="/images/oswald-logo.png"
                   alt="Oswald Joinery & Contractors"
