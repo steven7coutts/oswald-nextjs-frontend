@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { SiteSettings } from '../lib/types'
 import Image from 'next/image'
+import { urlFor } from '../lib/sanity.image'
 
 
 interface HeaderProps {
@@ -43,16 +44,18 @@ export default function Header({ siteSettings }: HeaderProps) {
           {/* Logo */}
           <div className="flex items-center">
             <a href="#home" className="flex items-center gap-4 group">
-              <div className="relative -mt-6 w-32 h-32">
-                <Image
-                  src="/images/oswald-logo.png"
-                  alt="Oswald Joinery & Contractors"
-                  width={900}
-                  height={900}
-                  className="object-contain w-full h-full"
-                  priority
-                />
-              </div>
+              {siteSettings?.logo && (
+                <div className="relative w-[120px] h-[120px] sm:w-[160px] sm:h-[160px] lg:w-[200px] lg:h-[200px] overflow-visible -mt-6">
+                  <Image
+                    src={urlFor(siteSettings.logo).width(900).height(900).fit('crop').url()}
+                    alt={siteSettings.brandName || 'Oswald Joinery'}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 640px) 120px, (max-width: 768px) 160px, 200px"
+                    priority
+                  />
+                </div>
+              )}
               <div className={`font-heading font-bold text-2xl transition-colors duration-300 ${
                 isScrolled ? 'text-brand-dark' : 'text-white'
               }`}>
