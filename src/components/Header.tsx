@@ -42,7 +42,7 @@ export default function Header({ siteSettings }: HeaderProps) {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="#home" className="flex items-center gap-3 group">
+            <a href="#home" className="flex items-center gap-4 group">
               <div className="w-24 h-24 relative overflow-visible">
                 <Image
                   src="/images/oswald-logo.png"
@@ -53,7 +53,7 @@ export default function Header({ siteSettings }: HeaderProps) {
                   priority
                 />
               </div>
-              <div className={`font-heading font-bold text-xl transition-colors duration-300 ${
+              <div className={`font-heading font-bold text-2xl transition-colors duration-300 ${
                 isScrolled ? 'text-brand-dark' : 'text-white'
               }`}>
                 {siteSettings?.brandName?.split(' ')[0] || 'Oswald'}
