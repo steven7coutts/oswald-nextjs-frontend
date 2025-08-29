@@ -40,7 +40,7 @@ export default function Header({ siteSettings }: HeaderProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-28">
+        <div className="flex items-center justify-between py-4">
           {/* Logo */}
           <div className="flex items-center">
             <a href="#home" className="flex items-center gap-4 group">
