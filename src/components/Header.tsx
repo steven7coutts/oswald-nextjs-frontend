@@ -47,10 +47,10 @@ export default function Header({ siteSettings }: HeaderProps) {
               {siteSettings?.logo && (
                 <div className="overflow-visible w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] flex-shrink-0">
                   <Image
-                    src={urlFor(siteSettings.logo).width(900).height(900).fit('crop').url()}
+                    src={urlFor(siteSettings.logo).width(300).height(300).fit('crop').url()}
                     alt={siteSettings.brandName || 'Oswald Joinery'}
-                    width={250}
-                    height={250}
+                    width={300}
+                    height={300}
                     className="object-contain w-full h-full"
                     priority
                   />
