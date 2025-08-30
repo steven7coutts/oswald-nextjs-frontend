@@ -49,7 +49,7 @@ export default function Services({ data, services }: ServicesProps) {
         </div>
 
         {/* Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
+        <div className="flex flex-wrap justify-center gap-3 mb-12 lg:mb-16 px-4">
           {[
             { key: 'all', label: 'All Services', count: services.length },
             { key: 'residential', label: 'Residential', count: services.filter(s => s.category === 'residential').length },
@@ -60,11 +60,11 @@ export default function Services({ data, services }: ServicesProps) {
               key={filter.key}
               onClick={() => setActiveFilter(filter.key as 'all' | 'residential' | 'commercial' | 'specialist')}
               className={`
-                px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 rounded-full font-accent font-semibold transition-all duration-300 text-xs sm:text-sm md:text-base
+                px-4 py-2 rounded-lg font-accent font-medium transition-all duration-200 text-sm
                 focus:outline-none focus:ring-2 focus:ring-[#C5862B] focus:ring-offset-2
                 ${activeFilter === filter.key
-                  ? 'bg-[#3A2B1A] text-white shadow-lg scale-105 border-2 border-[#3A2B1A]'
-                  : 'bg-white text-[#3A2B1A] hover:bg-[#F4E1C6]/20 hover:scale-105 border-2 border-[#C5862B]/40 hover:border-[#C5862B] shadow-md'
+                  ? 'bg-[#C5862B] text-white shadow-sm'
+                  : 'bg-gray-50 text-gray-600 hover:bg-gray-100 border border-gray-200 hover:border-gray-300'
                 }
               `}
             >
@@ -74,7 +74,7 @@ export default function Services({ data, services }: ServicesProps) {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-4 sm:gap-6 md:gap-8 lg:gap-10 px-4 sm:px-0">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 px-4 sm:px-0">
           {filteredServices.map((service) => {
             const icon = iconMap[service.iconName || ''] || '🔧'
             
@@ -82,64 +82,53 @@ export default function Services({ data, services }: ServicesProps) {
               <div
                 key={service._id}
                 className={`
-                  group relative bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-xl hover:shadow-2xl 
-                  transition-all duration-500 transform hover:-translate-y-2 
-                  border-2 border-[#C5862B]/40 hover:border-[#C5862B]/60
-                  focus-within:ring-2 focus-within:ring-[#C5862B] focus-within:ring-offset-2
-                  ${service.featured ? 'ring-2 ring-[#C5862B] ring-opacity-60' : ''}
+                  group relative bg-white rounded-xl p-6 sm:p-8 
+                  transition-all duration-300 ease-out
+                  border border-gray-100 hover:border-[#C5862B]/30
+                  shadow-sm hover:shadow-md
+                  ${service.featured ? 'ring-1 ring-[#C5862B]/20' : ''}
                 `}
                 tabIndex={0}
               >
                 {/* Featured Badge */}
                 {service.featured && (
-                  <div className="absolute -top-2 sm:-top-3 left-1/2 transform -translate-x-1/2">
-                    <div className="px-2 sm:px-4 py-1 bg-[#C5862B] text-white font-accent text-xs sm:text-sm font-bold rounded-full shadow-lg border-2 border-white">
-                      ⭐ Featured
+                  <div className="absolute top-4 right-4">
+                    <div className="px-2.5 py-1 bg-[#C5862B]/10 text-[#C5862B] font-accent text-xs font-medium rounded-full border border-[#C5862B]/20">
+                      Featured
                     </div>
                   </div>
                 )}
 
                 {/* Service Icon */}
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-[#C5862B] to-[#F4E1C6] rounded-2xl flex items-center justify-center mb-4 sm:mb-6 md:mb-8 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <span className="text-2xl sm:text-3xl md:text-4xl">{icon}</span>
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-[#F4E1C6]/30 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#C5862B]/10 transition-colors duration-300">
+                  <span className="text-lg sm:text-xl text-[#3A2B1A]">{icon}</span>
                 </div>
 
                 {/* Service Content */}
-                <div className="mb-4 sm:mb-6 md:mb-8">
-                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-[#3A2B1A] mb-2 sm:mb-3 md:mb-4 group-hover:text-[#C5862B] transition-colors duration-300 leading-tight">
+                <div className="mb-4">
+                  <h3 className="font-heading text-lg sm:text-xl font-semibold text-[#3A2B1A] mb-3 group-hover:text-[#C5862B] transition-colors duration-300 leading-tight">
                     {service.title}
                   </h3>
-                  <p className="font-body text-sm sm:text-base md:text-lg text-[#2E2B29]/80 leading-relaxed font-medium">
+                  <p className="font-body text-sm sm:text-base text-[#2E2B29]/70 leading-relaxed">
                     {service.excerpt}
                   </p>
                 </div>
 
                 {/* Category & Service Type Badges */}
-                <div className="flex flex-wrap gap-2 sm:gap-3 mb-4 sm:mb-6">
-                  <div className="px-2 sm:px-3 md:px-4 py-1 sm:py-2 bg-[#C5862B] text-[#3A2B1A] font-accent text-xs sm:text-sm md:text-base rounded-full border border-[#C5862B] font-bold shadow-lg">
+                <div className="flex flex-wrap gap-2">
+                  <div className="px-3 py-1.5 bg-[#C5862B]/10 text-[#C5862B] font-accent text-xs font-medium rounded-md border border-[#C5862B]/20">
                     {service.category.charAt(0).toUpperCase() + service.category.slice(1)}
                   </div>
-                  <div className="px-2 sm:px-3 md:px-4 py-1 sm:py-2 bg-[#F4E1C6]/80 text-[#3A2B1A] font-accent text-xs sm:text-sm md:text-base rounded-full border border-[#C5862B]/60 font-semibold shadow-sm">
+                  <div className="px-3 py-1.5 bg-gray-50 text-gray-600 font-accent text-xs font-medium rounded-md border border-gray-200">
                     {service.serviceType}
                   </div>
                 </div>
-
-                {/* Hover Effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C5862B] to-[#F4E1C6] rounded-2xl opacity-0 group-hover:opacity-5 transition-opacity duration-500" />
               </div>
             )
           })}
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-12 sm:mt-16 md:mt-20 lg:mt-24 px-4">
-          <div className="inline-flex items-center gap-2 sm:gap-3 md:gap-4 px-4 sm:px-6 md:px-8 py-2 sm:py-3 md:py-4 bg-[#3A2B1A] text-white rounded-full font-accent font-semibold hover:bg-[#6B4226] transition-colors duration-300 cursor-pointer group shadow-lg focus:outline-none focus:ring-2 focus:ring-[#C5862B] focus:ring-offset-2">
-            <span className="text-sm sm:text-base md:text-lg">View All Services</span>
-            <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </div>
-        </div>
+
       </div>
     </section>
   )
