@@ -21,13 +21,13 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
   if (!reviews || reviews.length === 0) {
     console.log('No reviews to display')
     return (
-      <section id="reviews" className="py-24 bg-gray-50">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="reviews" className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-[#F4E1C6]/30">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
               What Our Clients Say
             </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#2E2B29]/80 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
               Debug: No reviews found. Reviews data: {JSON.stringify(reviews)}
             </p>
           </div>
@@ -70,20 +70,20 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
   }
 
   return (
-    <section id="reviews" className="py-24 bg-gray-50">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-6">
+    <section id="reviews" className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-[#F4E1C6]/30">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
             What Our Clients Say
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#2E2B29]/80 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
             Don&apos;t just take our word for it - see what our clients have to say about our work
           </p>
         </div>
 
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-6 md:gap-8 lg:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {reviews.slice(0, 6).map((review) => (
-            <div key={review._id} className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div key={review._id} className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
               <div className="flex items-center justify-between mb-4">
                 {getPlatformIcon(review.platform)}
                 <div className="flex items-center gap-1">
@@ -99,18 +99,18 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
                 </div>
               </div>
 
-              <blockquote className="text-gray-700 text-lg leading-relaxed mb-6 italic">
+              <blockquote className="text-[#2E2B29] text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
                 &ldquo;{review.quote}&rdquo;
               </blockquote>
 
               <div className="flex items-center justify-between">
-                <div className="font-semibold text-gray-900">{review.client}</div>
+                <div className="font-semibold text-[#3A2B1A] text-sm sm:text-base">{review.client}</div>
                 {review.externalUrl && (
                   <a
                     href={review.externalUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+                    className="text-[#C5862B] hover:text-[#6B4226] text-xs sm:text-sm font-medium transition-colors duration-300"
                   >
                     View Review →
                   </a>
