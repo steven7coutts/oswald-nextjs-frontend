@@ -39,7 +39,7 @@ html {
 
 /* Account for fixed header when using hash links */
 section[id] {
-  scroll-margin-top: 80px; /* Base fallback for sections without specific scroll-margin */
+  scroll-margin-top: 120px; /* Base fallback for sections without specific scroll-margin */
 }
 
 /* Utilities */
