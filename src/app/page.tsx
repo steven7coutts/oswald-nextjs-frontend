@@ -59,16 +59,16 @@ export default async function Home() {
             <div className="flex items-center">
               {settings?.logo ? (
                 <Image
-                  src={urlFor(settings.logo).width(900).height(900).url()}
+                  src={urlFor(settings.logo).url()}
                   alt={settings.brandName || 'Oswald Joinery'}
-                  width={900}
-                  height={900}
+                  width={300}
+                  height={300}
                   priority
-                  className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 rounded-xl shadow-lg"
+                  className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-xl shadow-lg"
                 />
               ) : (
-                <div className="w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 bg-yellow-500 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-4xl md:text-5xl lg:text-6xl">O</span>
+                <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-48 lg:h-48 xl:w-64 xl:h-64 bg-yellow-500 rounded-xl flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl">O</span>
                 </div>
               )}
             </div>
