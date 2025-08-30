@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { Service as SharedService, HomepageData } from '@/lib/types'
+import { trackServiceInterest } from './GoogleAnalytics'
 
 interface ServicesProps {
   data: HomepageData
@@ -89,6 +90,13 @@ export default function Services({ data, services }: ServicesProps) {
                   ${service.featured ? 'ring-1 ring-[#C5862B]/20' : ''}
                 `}
                 tabIndex={0}
+                onClick={() => trackServiceInterest(service.title)}
+                role="button"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    trackServiceInterest(service.title)
+                  }
+                }}
               >
                 {/* Featured Badge */}
                 {service.featured && (

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { HomepageData, SiteSettings } from '../lib/types'
+import { trackFormSubmission, trackQuoteRequest } from './GoogleAnalytics'
 
 interface ContactProps {
   data: HomepageData
@@ -84,6 +85,11 @@ export default function Contact({ data, siteSettings }: ContactProps) {
       
       if (result.success) {
         setSubmitStatus('success')
+        
+        // Track successful form submission
+        trackFormSubmission('contact_form', 'enquiry')
+        trackQuoteRequest(formData.service)
+        
         // Reset form
         setFormData({
           name: '', 
