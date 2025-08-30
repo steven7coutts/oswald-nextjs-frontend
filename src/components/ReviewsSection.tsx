@@ -1,9 +1,9 @@
 'use client'
 
-import { Review } from '../lib/types'
+import { Testimonial } from '../lib/types'
 
 interface ReviewsSectionProps {
-  reviews: Review[]
+  reviews: Testimonial[]
 }
 
 export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
@@ -66,9 +66,7 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
     }
   }
 
-  function classNames(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
-  }
+
 
   return (
     <section id="reviews" className="relative isolate bg-white py-24 sm:py-32">

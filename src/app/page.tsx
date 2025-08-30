@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { urlFor } from '@/lib/sanity.image'
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
-import ReviewsSection, { Review as FrontendReview } from '@/components/ReviewsSection'
+import ReviewsSection from '@/components/ReviewsSection'
 import Services from '@/components/Services'
 import Portfolio from '@/components/Portfolio'
 import Contact from '@/components/Contact'
@@ -63,16 +63,7 @@ export default async function Home() {
         <Services data={home} services={services} />
 
         {/* REVIEWS */}
-        <ReviewsSection reviews={(home?.reviews || []).map((r) => ({
-          _id: r._id || r.client,
-          client: r.client,
-          quote: r.quote,
-          rating: r.rating,
-          platform: (r.platform === 'google' || r.platform === 'trustpilot' || r.platform === 'direct') ? r.platform : 'direct',
-          verified: Boolean(r.verified),
-          externalUrl: r.externalUrl,
-          reviewDate: r.reviewDate,
-        })) as FrontendReview[]} />
+        <ReviewsSection reviews={home?.reviews || []} />
 
         {/* PORTFOLIO */}
         <Portfolio data={home} projects={projects || []} />

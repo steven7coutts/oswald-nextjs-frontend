@@ -106,7 +106,3 @@ export interface Location {
   name: string
   slug?: { current: string }
 }
-
-
-
-
