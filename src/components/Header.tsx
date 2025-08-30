@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+
 import { SiteSettings } from '../lib/types'
 import Image from 'next/image'
 import { urlFor } from '../lib/sanity.image'
@@ -11,8 +11,6 @@ interface HeaderProps {
 }
 
 export default function Header({ siteSettings }: HeaderProps) {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
   const navItems = [
     { label: 'Home', href: '#home' },
     { label: 'Services', href: '#services' },
@@ -58,7 +56,7 @@ export default function Header({ siteSettings }: HeaderProps) {
             ))}
           </nav>
 
-          {/* CTA Button */}
+          {/* CTA Button - Desktop */}
           <div className="hidden lg:block">
             <a
               href="#contact"
@@ -68,47 +66,18 @@ export default function Header({ siteSettings }: HeaderProps) {
             </a>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 sm:p-3 rounded-lg transition-colors duration-300 hover:bg-white/20 text-white"
-          >
-            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {isMobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          {/* CTA Button - Mobile */}
+          <div className="lg:hidden">
+            <a
+              href="#contact"
+              className="px-3 sm:px-4 py-2 sm:py-2.5 bg-[#C5862B] hover:bg-[#C5862B]/90 text-[#3A2B1A] font-accent font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl text-xs sm:text-sm"
+            >
+              Get a Free Quote
+            </a>
+          </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-[#3A2B1A]/95 backdrop-blur-md rounded-b-2xl shadow-lg border border-[#F4E1C6]/20 mb-4">
-            <nav className="py-4 sm:py-6 px-4 sm:px-6 space-y-3 sm:space-y-4">
-              {navItems.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block font-accent font-semibold text-sm sm:text-base uppercase tracking-wider text-[#3A2B1A] hover:text-[#C5862B] transition-colors duration-300 py-2 sm:py-3 font-heading"
-                >
-                  {item.label}
-                </a>
-              ))}
-              <div className="pt-3 sm:pt-4 border-t border-[#F4E1C6]/20">
-                <a
-                  href="#contact"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#C5862B] hover:bg-[#C5862B]/90 text-[#3A2B1A] font-accent font-semibold rounded-lg text-center transition-all duration-300 text-sm sm:text-base"
-                >
-                  Get a Free Quote
-                </a>
-              </div>
-            </nav>
-          </div>
-        )}
+
       </div>
     </header>
   )
