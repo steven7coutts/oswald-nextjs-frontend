@@ -76,9 +76,13 @@ export default function Contact({ data, siteSettings }: ContactProps) {
         body: formDataToSend
       })
       
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`)
+      }
+      
       const result = await response.json()
       
-      if (response.ok && result.success) {
+      if (result.success) {
         setSubmitStatus('success')
         // Reset form
         setFormData({
@@ -100,7 +104,7 @@ export default function Contact({ data, siteSettings }: ContactProps) {
         setSubmitStatus('error')
       }
     } catch (error) {
-      console.error('Network error:', error)
+      console.error('Form submission error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)

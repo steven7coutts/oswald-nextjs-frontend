@@ -1,8 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
+  console.log('API route called')
   try {
     const formData = await request.formData()
+    console.log('FormData received:', formData)
     
     // Check honeypot field for spam protection
     const honeypot = formData.get('honeypot')
@@ -50,11 +52,13 @@ export async function POST(request: NextRequest) {
     
     // For now, just return success
     // Later you can replace this with actual Sanity create and email sending
-    return NextResponse.json({ 
+    const response = { 
       success: true, 
       message: 'Enquiry received successfully',
       enquiryId: `ENQ-${Date.now()}` // Temporary ID until Sanity integration
-    })
+    }
+    console.log('Sending response:', response)
+    return NextResponse.json(response)
     
   } catch (error) {
     console.error('Error processing enquiry:', error)
@@ -65,4 +69,4 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export const runtime = 'edge'
+
