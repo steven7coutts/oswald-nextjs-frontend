@@ -77,6 +77,8 @@ export interface HomepageData {
   aboutHeading?: string
   aboutBody?: string
   aboutImage?: SanityImage
+  aboutStats?: Array<{ number: string; label: string }>
+  aboutAdditionalContent?: string
   missionTitle?: string
   missionValues?: MissionValue[]
   contactIntro?: string
