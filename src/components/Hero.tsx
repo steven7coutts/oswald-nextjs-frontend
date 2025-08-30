@@ -136,8 +136,8 @@ export default function Hero({ data }: HeroProps) {
 
         {/* Scroll indicator - Close to trust indicators */}
         <div className="mt-3 sm:mt-4 lg:mt-5 xl:mt-6 text-center">
-          <div className="inline-block w-5 h-8 sm:w-6 sm:h-10 md:w-7 md:h-12 lg:w-8 lg:h-14 xl:w-9 xl:h-16 border-2 border-[#F4E1C6]/50 rounded-full flex justify-center bg-[#3A2B1A]/20 backdrop-blur-sm animate-bounce">
-            <div className="w-1 h-2 sm:h-2.5 md:h-3 lg:h-4 xl:h-5 bg-[#C5862B] rounded-full mt-1.5 animate-pulse shadow-lg"></div>
+          <div className="inline-block w-4 h-6 sm:w-5 sm:h-8 md:w-6 md:h-10 lg:w-7 lg:h-12 xl:w-8 xl:h-14 border-2 border-[#F4E1C6]/50 rounded-full flex justify-center bg-[#3A2B1A]/20 backdrop-blur-sm animate-bounce">
+            <div className="w-1 h-1.5 sm:h-2 md:h-2.5 lg:h-3 xl:h-4 bg-[#C5862B] rounded-full mt-1 sm:mt-1.5 md:mt-2 lg:mt-2.5 xl:mt-3 animate-pulse shadow-lg"></div>
           </div>
         </div>
       </div>
