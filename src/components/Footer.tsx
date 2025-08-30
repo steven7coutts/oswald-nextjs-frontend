@@ -87,6 +87,20 @@ export default function Footer({ siteSettings, services }: FooterProps) {
               © 2025 {siteSettings.brandName || 'Oswald Joinery & Contractors'}. All Rights Reserved.
             </div>
             
+            {/* Built by Studio SC7 */}
+            <div className="font-body text-[#F4E1C6]/60 text-xs sm:text-sm text-center">
+              Built by{' '}
+              <a 
+                href="https://studiosc7.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-[#C5862B] hover:text-[#F4E1C6] transition-colors duration-300 font-medium"
+              >
+                Studio SC7
+              </a>
+              {' '}🚀
+            </div>
+            
             {/* Social Links */}
             <div className="flex items-center gap-3 sm:gap-4">
               {siteSettings.social?.map((social: SocialLink) => (
