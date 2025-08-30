@@ -21,7 +21,7 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
   if (!project || !isOpen) return null
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-black/80 backdrop-blur-sm"
@@ -33,15 +33,15 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-4 right-4 z-10 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors duration-300 shadow-lg"
+          className="absolute top-2 sm:top-4 right-2 sm:right-4 z-10 w-8 h-8 sm:w-10 sm:h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors duration-300 shadow-lg"
         >
-          <svg className="w-6 h-6 text-[#3A2B1A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-4 h-4 sm:w-6 sm:h-6 text-[#3A2B1A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
         {/* Project Header */}
-        <div className="relative h-64 md:h-80 rounded-t-2xl overflow-hidden">
+        <div className="relative h-48 sm:h-56 md:h-64 lg:h-80 rounded-t-2xl overflow-hidden">
           {project.cover ? (
             <Image
               src={urlFor(project.cover as SanityImage).width(1600).height(900).fit('crop').url()}
@@ -84,11 +84,11 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
         </div>
 
         {/* Project Details */}
-        <div className="p-6 md:p-8">
+        <div className="p-4 sm:p-6 md:p-8 lg:p-10">
           {/* Project Description */}
-          <div className="mb-8">
-            <h3 className="font-heading text-2xl font-bold text-[#3A2B1A] mb-4">Project Overview</h3>
-            <p className="font-body text-[#2E2B29]/80 text-lg leading-relaxed">
+          <div className="mb-6 sm:mb-8 md:mb-10">
+            <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-[#3A2B1A] mb-3 sm:mb-4 md:mb-6">Project Overview</h3>
+            <p className="font-body text-base sm:text-lg md:text-xl text-[#2E2B29]/80 leading-relaxed">
               {project.summary}
             </p>
           </div>
@@ -167,11 +167,11 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           ) : null}
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#contact" className="px-8 py-4 bg-[#C5862B] text-[#3A2B1A] rounded-full font-accent font-semibold hover:bg-[#C5862B]/90 transition-colors duration-300 shadow-lg">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center">
+            <a href="#contact" className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-[#C5862B] text-[#3A2B1A] rounded-full font-accent font-semibold hover:bg-[#C5862B]/90 transition-colors duration-300 shadow-lg text-sm sm:text-base md:text-lg">
               Get Similar Quote
             </a>
-            <button onClick={onClose} className="px-8 py-4 bg-[#3A2B1A] text-white rounded-full font-accent font-semibold hover:bg-[#6B4226] transition-colors duration-300 shadow-lg">
+            <button onClick={onClose} className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-[#3A2B1A] text-white rounded-full font-accent font-semibold hover:bg-[#6B4226] transition-colors duration-300 shadow-lg text-sm sm:text-base md:text-lg">
               Close
             </button>
           </div>
@@ -239,23 +239,23 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
 
   return (
     <>
-      <section id="portfolio" className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+      <section id="portfolio" className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <div className="inline-block px-4 py-2 bg-[#C5862B]/20 border border-[#C5862B]/30 rounded-full text-[#C5862B] font-accent text-sm uppercase tracking-wider mb-6">
+          <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+            <div className="inline-block px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 bg-[#C5862B]/20 border border-[#C5862B]/30 rounded-full text-[#C5862B] font-accent text-xs sm:text-sm md:text-base uppercase tracking-wider mb-4 sm:mb-6 md:mb-8">
               Our Work
             </div>
-            <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-[#3A2B1A] mb-6">
+            <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
               See Our Craftsmanship in Action
             </h2>
-            <p className="font-body text-xl text-[#2E2B29]/80 max-w-3xl mx-auto leading-relaxed">
+            <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-[#2E2B29]/80 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
               {data.portfolioIntro || 'Our portfolio showcases the detail, finish, and care that goes into every Oswald project.'}
             </p>
           </div>
 
           {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
             {[
               { key: 'all', label: 'All Projects', count: projects.length },
               { key: 'residential', label: 'Residential', count: projects.filter(p => p.services.some(s => s.category === 'residential')).length },
@@ -266,7 +266,8 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                 key={filter.key}
                 onClick={() => setActiveFilter(filter.key as 'all' | 'residential' | 'commercial' | 'specialist')}
                 className={`
-                  px-6 py-3 rounded-full font-accent font-semibold transition-all duration-300
+                  px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 rounded-full font-accent font-semibold transition-all duration-300 text-xs sm:text-sm md:text-base
+                  focus:outline-none focus:ring-2 focus:ring-[#C5862B] focus:ring-offset-2
                   ${activeFilter === filter.key
                     ? 'bg-[#3A2B1A] text-white shadow-lg scale-105'
                     : 'bg-white/80 text-[#3A2B1A] hover:bg-white hover:scale-105 border border-[#F4E1C6]/50'
@@ -280,11 +281,12 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
 
           {/* Service Filter */}
           {allServices.length > 0 && (
-            <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
               <button
                 onClick={() => setSelectedService('all')}
                 className={`
-                  px-4 py-2 rounded-full font-accent text-sm font-medium transition-all duration-300
+                  px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-full font-accent text-xs sm:text-sm md:text-base font-medium transition-all duration-300
+                  focus:outline-none focus:ring-2 focus:ring-[#C5862B] focus:ring-offset-2
                   ${selectedService === 'all'
                     ? 'bg-[#C5862B] text-[#3A2B1A] shadow-md'
                     : 'bg-[#F4E1C6]/50 text-[#3A2B1A] hover:bg-[#F4E1C6]/70'
@@ -300,7 +302,8 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                     key={service._id}
                     onClick={() => setSelectedService(service._id)}
                     className={`
-                      px-4 py-2 rounded-full font-accent text-sm font-medium transition-all duration-300
+                      px-3 sm:px-4 md:px-6 py-2 sm:py-3 rounded-full font-accent text-xs sm:text-sm md:text-base font-medium transition-all duration-300
+                      focus:outline-none focus:ring-2 focus:ring-[#C5862B] focus:ring-offset-2
                       ${selectedService === service._id
                         ? 'bg-[#C5862B] text-[#3A2B1A] shadow-md'
                         : 'bg-[#F4E1C6]/50 text-[#3A2B1A] hover:bg-[#F4E1C6]/70'
@@ -314,7 +317,7 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
           )}
 
           {/* Portfolio Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10 px-4 sm:px-0">
             {filteredProjects.map((project) => (
               <div
                 key={project._id}
@@ -381,20 +384,20 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                 </div>
 
                 {/* Project Info */}
-                <div className="p-6">
-                  <h3 className="font-heading text-xl font-bold text-[#3A2B1A] mb-3 group-hover:text-[#C5862B] transition-colors duration-300">
+                <div className="p-4 sm:p-6 md:p-8">
+                  <h3 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-[#3A2B1A] mb-2 sm:mb-3 md:mb-4 group-hover:text-[#C5862B] transition-colors duration-300 leading-tight">
                     {project.title}
                   </h3>
-                  <p className="font-body text-[#2E2B29]/70 text-sm mb-4">
+                  <p className="font-body text-xs sm:text-sm md:text-base text-[#2E2B29]/70 mb-3 sm:mb-4 leading-relaxed">
                     {project.summary}
                   </p>
 
                   {/* Service Tags */}
-                  <div className="flex flex-wrap gap-2 mb-4">
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
                     {project.services.map((service) => (
                       <span
                         key={service._id}
-                        className="px-3 py-1 rounded-full font-accent text-xs font-medium bg-[#F4E1C6]/50 text-[#3A2B1A] border border-[#C5862B]/30"
+                        className="px-2 sm:px-3 py-1 rounded-full font-accent text-xs sm:text-sm font-medium bg-[#F4E1C6]/50 text-[#3A2B1A] border border-[#C5862B]/30"
                       >
                         {service.title}
                       </span>
@@ -402,9 +405,9 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                   </div>
                   
                   {/* Click to View Text */}
-                  <div className="inline-flex items-center gap-2 text-[#C5862B] font-accent font-semibold text-sm group">
+                  <div className="inline-flex items-center gap-1 sm:gap-2 text-[#C5862B] font-accent font-semibold text-xs sm:text-sm group">
                     <span>Click to View Details</span>
-                    <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </div>
@@ -414,7 +417,7 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
           </div>
 
           {/* Results Count */}
-          <div className="text-center mt-8 text-[#2E2B29]/60 font-body">
+          <div className="text-center mt-8 sm:mt-10 md:mt-12 lg:mt-16 text-[#2E2B29]/60 font-body text-sm sm:text-base md:text-lg">
             Showing {filteredProjects.length} of {projects.length} projects
           </div>
 
