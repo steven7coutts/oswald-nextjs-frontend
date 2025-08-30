@@ -23,7 +23,7 @@ export default function Header({ siteSettings }: HeaderProps) {
   ]
 
   return (
-    <header className="static z-50 bg-transparent border-none shadow-none backdrop-blur-none" style={{ backgroundColor: 'transparent !important' }}>
+    <header className="absolute inset-x-0 top-0 z-50 bg-transparent border-none shadow-none backdrop-blur-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4 sm:py-5 lg:py-6">
           {/* Logo */}
