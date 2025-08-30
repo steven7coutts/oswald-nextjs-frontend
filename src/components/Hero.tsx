@@ -15,7 +15,7 @@ export default function Hero({ data }: HeroProps) {
   const titleParts = heroTitle.split('.').filter(Boolean)
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#3A2B1A] via-[#6B4226] to-[#2E2B29] pt-16 sm:pt-16 md:pt-24 lg:pt-28 xl:pt-32 pb-6 sm:pb-8 md:pb-10 lg:pb-12 xl:pb-16 scroll-mt-16 sm:scroll-mt-16 md:scroll-mt-24 lg:scroll-mt-28 xl:scroll-mt-32">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#3A2B1A] via-[#6B4226] to-[#2E2B29] pt-16 sm:pt-16 md:pt-24 lg:pt-28 xl:pt-32 pb-6 sm:pb-8 md:pb-10 lg:pb-12 xl:pb-16 scroll-mt-16 sm:scroll-mt-16 md:scroll-mt-24 lg:scroll-mt-28 xl:scroll-mt-32" aria-labelledby="hero-heading">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
@@ -45,7 +45,7 @@ export default function Hero({ data }: HeroProps) {
         </div>
 
         {/* Main Title - Responsive Typography */}
-        <h1 className="font-heading font-bold mb-4 sm:mb-5 lg:mb-6 xl:mb-8 leading-tight tracking-tight">
+        <h1 id="hero-heading" className="font-heading font-bold mb-4 sm:mb-5 lg:mb-6 xl:mb-8 leading-tight tracking-tight">
           {/* Mobile: 3 lines for optimal legibility */}
           <div className="md:hidden space-y-1.5 sm:space-y-2 lg:space-y-2.5">
             <span className="block text-[#F4E1C6] text-xl sm:text-2xl lg:text-2xl xl:text-3xl">

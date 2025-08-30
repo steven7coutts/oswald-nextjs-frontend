@@ -8,6 +8,8 @@ import ReviewsSection from '@/components/ReviewsSection'
 import Services from '@/components/Services'
 import Portfolio from '@/components/Portfolio'
 import Contact from '@/components/Contact'
+import Footer from '@/components/Footer'
+import SEO from '@/components/SEO'
 import { HomepageData, SiteSettings, Service, Project, MissionValue, Location, SocialLink } from '@/lib/types'
 import { unstable_cache } from 'next/cache'
 
@@ -52,10 +54,19 @@ export default async function Home() {
 
   return (
     <>
+      {/* SEO Component */}
+      <SEO 
+        siteSettings={settings} 
+        homepageData={home}
+        pageTitle="Oswald Joinery & Contractors | Perth's Premier Joinery Service"
+        pageDescription="Expert joinery services in Perthshire: bespoke kitchens, wardrobes, windows, staircases, flooring, and commercial joinery. Quality craftsmanship with over 10 years experience."
+        canonicalUrl="https://oswaldjoinery.co.uk"
+      />
+
       {/* HEADER - Using Header Component */}
       <Header siteSettings={settings} />
 
-      <main className="min-h-screen">
+      <main className="min-h-screen" role="main">
         {/* HERO - Using Hero Component */}
         <Hero data={home} />
 
@@ -69,13 +80,13 @@ export default async function Home() {
         <Portfolio data={home} projects={projects || []} />
 
         {/* ABOUT & MISSION */}
-        <section id="about" className="py-24 bg-white">
+        <section id="about" className="py-24 bg-white" aria-labelledby="about-heading">
           <div className="mx-auto max-w-6xl px-6">
             <div className="text-center mb-16">
               <span className="inline-block px-4 py-2 text-sm font-semibold text-yellow-600 bg-yellow-50 rounded-full mb-6 border border-yellow-200">
                 About Us
               </span>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-6">
+              <h2 id="about-heading" className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-6">
                 {home?.aboutHeading || 'Craftsmanship with Integrity'}
               </h2>
             </div>
@@ -91,17 +102,17 @@ export default async function Home() {
                   </p>
                 </div>
                 
-                <div className="mt-10 grid grid-cols-3 gap-6">
+                <div className="mt-10 grid grid-cols-3 gap-6" role="region" aria-label="Company Statistics">
                   <div className="text-center">
-                    <div className="text-3xl font-heading font-bold text-yellow-500 mb-2">10+</div>
+                    <div className="text-3xl font-heading font-bold text-yellow-500 mb-2" aria-label="Over 10 years of experience">10+</div>
                     <div className="text-sm text-gray-600 font-medium">Years Experience</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-heading font-bold text-yellow-500 mb-2">500+</div>
+                    <div className="text-3xl font-heading font-bold text-yellow-500 mb-2" aria-label="Over 500 projects completed">500+</div>
                     <div className="text-sm text-gray-600 font-medium">Projects</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-heading font-bold text-yellow-500 mb-2">100%</div>
+                    <div className="text-3xl font-heading font-bold text-yellow-500 mb-2" aria-label="100 percent client satisfaction">100%</div>
                     <div className="text-sm text-gray-600 font-medium">Satisfaction</div>
                   </div>
                 </div>
@@ -150,17 +161,17 @@ export default async function Home() {
         </section>
 
         {/* LOCATIONS */}
-        <section id="locations" className="py-24 bg-gray-50">
+        <section id="locations" className="py-24 bg-gray-50" aria-labelledby="locations-heading">
           <div className="mx-auto max-w-6xl px-6">
             <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-6">
+              <h2 id="locations-heading" className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-6">
                 Areas We Serve (30 miles of Perth)
               </h2>
               <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 We provide professional joinery services across Perthshire and within 30 miles of Perth.
               </p>
             </div>
-            <div className="flex flex-wrap gap-4 justify-center">
+            <div className="flex flex-wrap gap-4 justify-center" role="region" aria-label="Service Areas">
               {locations?.map((l: Location) => (
                 <span key={l.slug?.current || l.name} className="rounded-full border border-gray-200 px-6 py-3 text-sm bg-white text-gray-900 hover:bg-yellow-50 hover:border-yellow-300 transition-all duration-300 font-medium">
                   {l.name}
@@ -178,58 +189,7 @@ export default async function Home() {
         <Contact data={home} siteSettings={settings} />
 
         {/* FOOTER */}
-        <footer className="border-t border-gray-200 bg-gray-900 text-white py-20">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="grid md:grid-cols-3 gap-12 mb-12">
-              <div>
-                <h3 className="text-2xl font-heading font-semibold text-yellow-400 mb-6">
-                  {settings?.brandName || 'Oswald Joinery & Contractors'}
-                </h3>
-                <p className="text-gray-300 mb-6 text-lg">Crafted with Precision. Built to Last.</p>
-                {settings?.phone && <p className="text-gray-400 mb-2">{settings.phone}</p>}
-                {settings?.email && <p className="text-gray-400 mb-2">{settings.email}</p>}
-                {settings?.address && <p className="text-gray-400">{settings.address}</p>}
-              </div>
-              
-              <div>
-                <h4 className="font-heading font-semibold text-yellow-400 mb-6 text-lg">Our Services</h4>
-                <ul className="space-y-3">
-                  {services?.slice(0, 6).map((s: Service) => (
-                    <li key={s.title}>
-                      <a href="#services" className="text-gray-300 hover:text-yellow-300 transition-colors duration-300">
-                        {s.title}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h4 className="font-heading font-semibold text-yellow-400 mb-6 text-lg">Quick Links</h4>
-                <ul className="space-y-3">
-                  <li><a href="#home" className="text-gray-300 hover:text-yellow-300 transition-colors duration-300">Home</a></li>
-                  <li><a href="#services" className="text-gray-300 hover:text-yellow-300 transition-colors duration-300">Services</a></li>
-                  <li><a href="#portfolio" className="text-gray-300 hover:text-yellow-300 transition-colors duration-300">Portfolio</a></li>
-                  <li><a href="#about" className="text-gray-300 hover:text-yellow-300 transition-colors duration-300">About</a></li>
-                  <li><a href="#contact" className="text-gray-300 hover:text-yellow-300 transition-colors duration-300">Contact</a></li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="border-t border-gray-700 pt-8 flex flex-col sm:flex-row justify-between items-center">
-              <p className="text-gray-400 mb-4 sm:mb-0">
-                © {new Date().getFullYear()} {settings?.brandName || 'Oswald Joinery & Contractors'}. All Rights Reserved.
-              </p>
-              <div className="flex gap-6">
-                {(settings?.social || []).map((s: SocialLink) => (
-                  <a key={s.label} href={s.url} className="text-gray-400 hover:text-yellow-300 transition-colors duration-300">
-                    {s.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </footer>
+        <Footer siteSettings={settings} services={services} />
       </main>
     </>
   )

@@ -23,8 +23,60 @@ const robotoCondensed = Roboto_Condensed({
 });
 
 export const metadata: Metadata = {
-  title: "Oswald Joinery & Contractors | Perth",
-  description: "Bespoke joinery in Perthshire: kitchens, wardrobes, windows, staircases, flooring, commercial joinery.",
+  title: {
+    default: "Oswald Joinery & Contractors | Perth's Premier Joinery Service",
+    template: "%s | Oswald Joinery & Contractors"
+  },
+  description: "Expert joinery services in Perthshire: bespoke kitchens, wardrobes, windows, staircases, flooring, and commercial joinery. Quality craftsmanship with over 10 years experience.",
+  keywords: ["joinery", "Perth", "Perthshire", "bespoke kitchens", "wardrobes", "windows", "staircases", "flooring", "commercial joinery", "carpentry", "woodwork"],
+  authors: [{ name: "Oswald Joinery & Contractors" }],
+  creator: "Oswald Joinery & Contractors",
+  publisher: "Oswald Joinery & Contractors",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL('https://oswaldjoinery.co.uk'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_GB',
+    url: 'https://oswaldjoinery.co.uk',
+    siteName: 'Oswald Joinery & Contractors',
+    title: "Oswald Joinery & Contractors | Perth's Premier Joinery Service",
+    description: "Expert joinery services in Perthshire: bespoke kitchens, wardrobes, windows, staircases, flooring, and commercial joinery. Quality craftsmanship with over 10 years experience.",
+    images: [
+      {
+        url: '/images/oswald-joinery-hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Oswald Joinery & Contractors - Perth Joinery Services',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Oswald Joinery & Contractors | Perth's Premier Joinery Service",
+    description: "Expert joinery services in Perthshire: bespoke kitchens, wardrobes, windows, staircases, flooring, and commercial joinery.",
+    images: ['/images/oswald-joinery-hero.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'your-google-verification-code', // Add your Google Search Console verification code
+  },
   icons: {
     icon: [
       {
