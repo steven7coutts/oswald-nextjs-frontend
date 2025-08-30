@@ -53,22 +53,22 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-[#F4E1C6] to-[#C5862B]/20" />
           )}
-          {/* Featured Badge */}
+          {/* Featured Badge - Top Right */}
           {project.featured && (
-            <div className="absolute top-4 left-4 z-10">
-              <div className="px-4 py-2 bg-[#C5862B] text-[#3A2B1A] font-accent text-sm font-bold rounded-full shadow-lg">
-                ⭐ Featured Project
+            <div className="absolute top-4 right-4 z-20">
+              <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#C5862B] text-[#3A2B1A] font-accent text-xs sm:text-sm font-bold rounded-full shadow-lg">
+                ⭐ Featured
               </div>
             </div>
           )}
 
-          {/* Location & Project Type */}
-          <div className="absolute top-4 left-4 flex flex-wrap gap-2 max-w-[80%]">
-            <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#3A2B1A] font-accent text-sm rounded-full">
+          {/* Location & Project Type - Top Left with Responsive Spacing */}
+          <div className="absolute top-4 left-4 z-10 flex flex-col sm:flex-row gap-2 max-w-[70%] sm:max-w-[75%]">
+            <span className="px-2 sm:px-3 py-1 sm:py-1.5 bg-white/90 backdrop-blur-sm text-[#3A2B1A] font-accent text-xs sm:text-sm rounded-full shadow-sm">
               📍 {project.location}
             </span>
             {project.projectType && (
-              <span className="px-3 py-1 bg-[#3A2B1A]/90 text-white font-accent text-sm rounded-full">
+              <span className="px-2 sm:px-3 py-1 sm:py-1.5 bg-[#3A2B1A]/90 text-white font-accent text-xs sm:text-sm rounded-full shadow-sm">
                 🏗️ {project.projectType}
               </span>
             )}
@@ -168,9 +168,18 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center">
-            <a href="#contact" className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-[#C5862B] text-[#3A2B1A] rounded-full font-accent font-semibold hover:bg-[#C5862B]/90 transition-colors duration-300 shadow-lg text-sm sm:text-base md:text-lg">
+            <button 
+              onClick={() => {
+                onClose()
+                // Small delay to ensure modal closes before scrolling
+                setTimeout(() => {
+                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                }, 100)
+              }}
+              className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-[#C5862B] text-[#3A2B1A] rounded-full font-accent font-semibold hover:bg-[#C5862B]/90 transition-colors duration-300 shadow-lg text-sm sm:text-base md:text-lg"
+            >
               Get Similar Quote
-            </a>
+            </button>
             <button onClick={onClose} className="px-4 sm:px-6 md:px-8 py-3 sm:py-4 bg-[#3A2B1A] text-white rounded-full font-accent font-semibold hover:bg-[#6B4226] transition-colors duration-300 shadow-lg text-sm sm:text-base md:text-lg">
               Close
             </button>
@@ -182,7 +191,6 @@ function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
 }
 
 export default function Portfolio({ data, projects }: PortfolioProps) {
-  const [activeFilter, setActiveFilter] = useState<'all' | 'residential' | 'commercial' | 'specialist'>('all')
   const [selectedService, setSelectedService] = useState<string>('all')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -200,18 +208,11 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
     return Array.from(serviceSet)
   }, [projects])
 
-  // Filter projects based on active filters
+  // Filter projects based on selected service
   const filteredProjects = useMemo(() => {
     if (!projects) return []
     
     let filtered = projects
-
-    // Filter by category
-    if (activeFilter !== 'all') {
-      filtered = filtered.filter(project => 
-        project.services.some(service => service.category === activeFilter)
-      )
-    }
 
     // Filter by specific service
     if (selectedService !== 'all') {
@@ -221,7 +222,7 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
     }
 
     return filtered
-  }, [projects, activeFilter, selectedService])
+  }, [projects, selectedService])
 
   // Handle project selection
   const handleProjectClick = (project: Project) => {
@@ -254,30 +255,7 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
             </p>
           </div>
 
-          {/* Filter Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 lg:gap-6 mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
-            {[
-              { key: 'all', label: 'All Projects', count: projects.length },
-              { key: 'residential', label: 'Residential', count: projects.filter(p => p.services.some(s => s.category === 'residential')).length },
-              { key: 'commercial', label: 'Commercial', count: projects.filter(p => p.services.some(s => s.category === 'commercial')).length },
-              { key: 'specialist', label: 'Specialist', count: projects.filter(p => p.services.some(s => s.category === 'specialist')).length }
-            ].map((filter) => (
-              <button
-                key={filter.key}
-                onClick={() => setActiveFilter(filter.key as 'all' | 'residential' | 'commercial' | 'specialist')}
-                className={`
-                  px-3 sm:px-4 md:px-6 lg:px-8 py-2 sm:py-3 md:py-4 rounded-full font-accent font-semibold transition-all duration-300 text-xs sm:text-sm md:text-base
-                  focus:outline-none focus:ring-2 focus:ring-[#C5862B] focus:ring-offset-2
-                  ${activeFilter === filter.key
-                    ? 'bg-[#3A2B1A] text-white shadow-lg scale-105'
-                    : 'bg-white/80 text-[#3A2B1A] hover:bg-white hover:scale-105 border border-[#F4E1C6]/50'
-                  }
-                `}
-              >
-                {filter.label} ({filter.count})
-              </button>
-            ))}
-          </div>
+
 
           {/* Service Filter */}
           {allServices.length > 0 && (
@@ -325,13 +303,14 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                 className={`
                   group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl 
                   transition-all duration-500 transform hover:-translate-y-2 cursor-pointer
+                  border-2 border-transparent hover:border-[#C5862B]/30
                   ${project.featured ? 'ring-2 ring-[#C5862B] ring-opacity-50' : ''}
                 `}
               >
                 {/* Featured Badge */}
                 {project.featured && (
-                  <div className="absolute top-4 right-4 z-10">
-                    <div className="px-3 py-1 bg-[#C5862B] text-[#3A2B1A] font-accent text-sm font-bold rounded-full shadow-lg">
+                  <div className="absolute top-3 right-3 z-10">
+                    <div className="px-2.5 py-1 bg-[#C5862B] text-[#3A2B1A] font-accent text-xs font-bold rounded-full shadow-lg border border-[#C5862B]/30">
                       Featured
                     </div>
                   </div>
@@ -352,13 +331,13 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                   )}
                   <div className="absolute inset-0 bg-[#3A2B1A]/20 group-hover:bg-[#3A2B1A]/40 transition-colors duration-500"></div>
                   
-                  {/* Badges */}
-                  <div className="absolute top-4 left-4 flex flex-wrap gap-2 max-w-[80%]">
-                    <span className="px-3 py-1 bg-white/90 backdrop-blur-sm text-[#3A2B1A] font-accent text-sm rounded-full">
+                  {/* Badges - Contained Positioning */}
+                  <div className="absolute top-3 left-3 flex flex-col gap-1.5 max-w-[60%]">
+                    <span className="px-2 py-1 bg-white/95 backdrop-blur-sm text-[#3A2B1A] font-accent text-xs font-medium rounded-full shadow-sm border border-white/50">
                       {project.location}
                     </span>
                     {project.projectType && (
-                      <span className="px-3 py-1 bg-[#3A2B1A]/90 text-white font-accent text-sm rounded-full">
+                      <span className="px-2 py-1 bg-[#3A2B1A]/95 text-white font-accent text-xs font-medium rounded-full shadow-sm border border-[#3A2B1A]/50">
                         {project.projectType}
                       </span>
                     )}
@@ -372,10 +351,10 @@ export default function Portfolio({ data, projects }: PortfolioProps) {
                     </div>
                   </div>
 
-                  {/* Click Indicator */}
-                  <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="w-16 h-16 bg-[#C5862B] rounded-full flex items-center justify-center shadow-lg">
-                      <svg className="w-8 h-8 text-[#3A2B1A]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  {/* Subtle Hover Indicator */}
+                  <div className="absolute top-3 right-12 opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-90 group-hover:scale-100">
+                    <div className="w-7 h-7 bg-[#C5862B]/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg border border-white/20">
+                      <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                       </svg>
