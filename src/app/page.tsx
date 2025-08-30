@@ -2,6 +2,7 @@ import { client } from '@/lib/sanity.client'
 import { homepageQuery, settingsQuery, servicesQuery, locationsQuery, projectsQuery } from '@/lib/queries'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity.image'
+import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import ReviewsSection, { Review as FrontendReview } from '@/components/ReviewsSection'
 import Services from '@/components/Services'
@@ -51,47 +52,8 @@ export default async function Home() {
 
   return (
     <>
-      {/* HEADER - Radiant Style */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-transparent">
-        <div className="mx-auto max-w-7xl px-6 py-8">
-          <div className="flex items-center justify-between">
-            {/* Logo & Brand */}
-            <div className="flex items-center">
-              {settings?.logo ? (
-                <Image
-                  src={urlFor(settings.logo).url()}
-                  alt={settings.brandName || 'Oswald Joinery'}
-                  width={300}
-                  height={300}
-                  priority
-                  className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-48 lg:h-48 xl:w-64 xl:h-64 rounded-xl shadow-lg"
-                />
-              ) : (
-                <div className="w-20 h-20 sm:w-28 sm:h-28 md:w-36 md:h-36 lg:w-48 lg:h-48 xl:w-64 xl:h-64 bg-yellow-500 rounded-xl flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl">O</span>
-                </div>
-              )}
-            </div>
-            
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              <a href="#home" className="text-white/90 hover:text-yellow-400 transition-colors font-medium text-lg">Home</a>
-              <a href="#services" className="text-white/90 hover:text-yellow-400 transition-colors font-medium text-lg">Services</a>
-              <a href="#portfolio" className="text-white/90 hover:text-yellow-400 transition-colors font-medium text-lg">Portfolio</a>
-              <a href="#about" className="text-white/90 hover:text-yellow-400 transition-colors font-medium text-lg">About</a>
-              <a href="#contact" className="text-white/90 hover:text-yellow-400 transition-colors font-medium text-lg">Contact</a>
-            </nav>
-            
-            {/* CTA Button */}
-            <a 
-              href="#contact" 
-              className="bg-yellow-500 text-gray-900 px-6 py-3 rounded-full font-semibold hover:bg-yellow-400 transition-all duration-300 hover:scale-105 shadow-lg text-lg"
-            >
-              Get a Free Quote
-            </a>
-          </div>
-        </div>
-      </header>
+      {/* HEADER - Using Header Component */}
+      <Header siteSettings={settings} />
 
       <main className="min-h-screen">
         {/* HERO - Using Hero Component */}
