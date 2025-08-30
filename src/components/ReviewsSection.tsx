@@ -1,40 +1,37 @@
 'use client'
 
-export interface Review {
-  _id: string
-  client: string
-  quote: string
-  rating: number
-  platform: 'google' | 'trustpilot' | 'direct'
-  verified: boolean
-  externalUrl?: string
-  reviewDate?: string
-}
+import { Review } from '../lib/types'
 
 interface ReviewsSectionProps {
   reviews: Review[]
 }
 
 export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
-  console.log('ReviewsSection received reviews:', reviews)
-  
   if (!reviews || reviews.length === 0) {
-    console.log('No reviews to display')
     return (
-      <section id="reviews" className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-[#F4E1C6]/30">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="text-center">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
+      <section id="reviews" className="relative isolate bg-white py-24 sm:py-32">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-base font-semibold text-[#C5862B]">Testimonials</h2>
+            <p className="mt-2 text-4xl font-semibold tracking-tight text-[#3A2B1A] sm:text-5xl">
               What Our Clients Say
-            </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#2E2B29]/80 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
-              Debug: No reviews found. Reviews data: {JSON.stringify(reviews)}
+            </p>
+            <p className="mt-4 text-lg text-[#2E2B29]/70">
+              No reviews available at the moment.
             </p>
           </div>
         </div>
       </section>
     )
   }
+
+  // Create a featured review (first review gets special treatment)
+  const featuredReview = reviews[0]
+  
+  // Group remaining reviews into columns for responsive layout
+  const remainingReviews = reviews.slice(1)
+  const column1 = remainingReviews.slice(0, Math.ceil(remainingReviews.length / 2))
+  const column2 = remainingReviews.slice(Math.ceil(remainingReviews.length / 2))
 
   const getPlatformIcon = (platform: string) => {
     switch (platform) {
@@ -69,55 +66,141 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
     }
   }
 
+  function classNames(...classes: string[]) {
+    return classes.filter(Boolean).join(' ')
+  }
+
   return (
-    <section id="reviews" className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-[#F4E1C6]/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
+    <section id="reviews" className="relative isolate bg-white py-24 sm:py-32">
+      {/* Background decorative elements */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-1/2 -z-10 -translate-y-1/2 transform-gpu overflow-hidden opacity-30 blur-3xl"
+      >
+        <div
+          style={{
+            clipPath:
+              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+          }}
+          className="ml-[max(50%,38rem)] aspect-1313/771 w-328.25 bg-gradient-to-tr from-[#C5862B] to-[#F4E1C6]"
+        />
+      </div>
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-0 top-0 -z-10 flex transform-gpu overflow-hidden pt-32 opacity-25 blur-3xl sm:pt-40 xl:justify-end"
+      >
+        <div
+          style={{
+            clipPath:
+              'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
+          }}
+          className="-ml-88 aspect-1313/771 w-328.25 flex-none origin-top-right rotate-30 bg-gradient-to-tr from-[#C5862B] to-[#F4E1C6] xl:mr-[calc(50%-12rem)] xl:ml-0"
+        />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-base font-semibold text-[#C5862B]">Testimonials</h2>
+          <p className="mt-2 text-4xl font-semibold tracking-tight text-[#3A2B1A] sm:text-5xl">
             What Our Clients Say
-          </h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#2E2B29]/80 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
+          </p>
+          <p className="mt-4 text-lg text-[#2E2B29]/70">
             Don&apos;t just take our word for it - see what our clients have to say about our work
           </p>
         </div>
 
-        <div className="grid gap-4 sm:gap-6 md:gap-8 lg:gap-10 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-          {reviews.slice(0, 6).map((review) => (
-            <div key={review._id} className="bg-white rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg hover:shadow-xl transition-shadow duration-300">
-              <div className="flex items-center justify-between mb-4">
-                {getPlatformIcon(review.platform)}
-                <div className="flex items-center gap-1">
-                  {[...Array(5)].map((_, i) => (
-                    <svg
-                      key={i}
-                      className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
-                </div>
+        <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 grid-rows-1 gap-8 text-sm text-[#2E2B29] sm:mt-20 sm:grid-cols-2 xl:mx-0 xl:max-w-none xl:grid-flow-col xl:grid-cols-4">
+          {/* Featured Review */}
+          <figure className="rounded-2xl bg-white shadow-lg ring-1 ring-[#F4E1C6]/20 sm:col-span-2 xl:col-start-2 xl:row-end-1">
+            <blockquote className="p-6 text-lg font-semibold tracking-tight text-[#3A2B1A] sm:p-12 sm:text-xl">
+              <p>&ldquo;{featuredReview.quote}&rdquo;</p>
+            </blockquote>
+            <figcaption className="flex flex-wrap items-center gap-x-4 gap-y-4 border-t border-[#F4E1C6]/20 px-6 py-4 sm:flex-nowrap">
+              {getPlatformIcon(featuredReview.platform)}
+              <div className="flex-auto">
+                <div className="font-semibold text-[#3A2B1A]">{featuredReview.client}</div>
+                <div className="text-[#2E2B29]/70">Verified Client</div>
               </div>
-
-              <blockquote className="text-[#2E2B29] text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6 italic">
-                &ldquo;{review.quote}&rdquo;
-              </blockquote>
-
-              <div className="flex items-center justify-between">
-                <div className="font-semibold text-[#3A2B1A] text-sm sm:text-base">{review.client}</div>
-                {review.externalUrl && (
-                  <a
-                    href={review.externalUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[#C5862B] hover:text-[#6B4226] text-xs sm:text-sm font-medium transition-colors duration-300"
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <svg
+                    key={i}
+                    className={`w-5 h-5 ${i < featuredReview.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                    viewBox="0 0 20 20"
                   >
-                    View Review →
-                  </a>
-                )}
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
               </div>
+            </figcaption>
+          </figure>
+
+          {/* Review Columns */}
+          <div className="space-y-8 xl:contents xl:space-y-0">
+            {/* Column 1 */}
+            <div className="space-y-8">
+              {column1.map((review) => (
+                <figure
+                  key={review._id}
+                  className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-[#F4E1C6]/20"
+                >
+                  <blockquote className="text-[#2E2B29]">
+                    <p>&ldquo;{review.quote}&rdquo;</p>
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-x-4">
+                    {getPlatformIcon(review.platform)}
+                    <div>
+                      <div className="font-semibold text-[#3A2B1A]">{review.client}</div>
+                      <div className="text-[#2E2B29]/70">Verified Client</div>
+                    </div>
+                    <div className="flex items-center gap-1 ml-auto">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </figcaption>
+                </figure>
+              ))}
             </div>
-          ))}
+
+            {/* Column 2 */}
+            <div className="space-y-8">
+              {column2.map((review) => (
+                <figure
+                  key={review._id}
+                  className="rounded-2xl bg-white p-6 shadow-lg ring-1 ring-[#F4E1C6]/20"
+                >
+                  <blockquote className="text-[#2E2B29]">
+                    <p>&ldquo;{review.quote}&rdquo;</p>
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-x-4">
+                    {getPlatformIcon(review.platform)}
+                    <div>
+                      <div className="font-semibold text-[#3A2B1A]">{review.client}</div>
+                      <div className="text-[#2E2B29]/70">Verified Client</div>
+                    </div>
+                    <div className="flex items-center gap-1 ml-auto">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400 fill-current' : 'text-gray-300'}`}
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </div>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
