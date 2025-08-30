@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { SiteSettings } from '../lib/types'
 import Image from 'next/image'
 import { urlFor } from '../lib/sanity.image'
@@ -11,16 +11,7 @@ interface HeaderProps {
 }
 
 export default function Header({ siteSettings }: HeaderProps) {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   const navItems = [
     { label: 'Home', href: '#home' },
@@ -32,13 +23,7 @@ export default function Header({ siteSettings }: HeaderProps) {
   ]
 
   return (
-    <header 
-      className={`sticky top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-lg border-b border-[#F4E1C6]/20' 
-          : 'bg-white/0 backdrop-blur-md'
-      }`}
-    >
+    <header className="static z-50 bg-white/0 backdrop-blur-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4 sm:py-5 lg:py-6">
           {/* Logo */}
@@ -56,9 +41,7 @@ export default function Header({ siteSettings }: HeaderProps) {
                   />
                 </div>
               )}
-              <div className={`font-heading font-bold text-base sm:text-lg lg:text-xl xl:text-2xl transition-colors duration-300 ${
-                isScrolled ? 'text-[#3A2B1A]' : 'text-white'
-              }`}>
+              <div className="font-heading font-bold text-base sm:text-lg lg:text-xl xl:text-2xl transition-colors duration-300 text-white">
                 {siteSettings?.brandName?.split(' ')[0] || 'Oswald'}
               </div>
             </a>
@@ -70,9 +53,7 @@ export default function Header({ siteSettings }: HeaderProps) {
               <a
                 key={item.label}
                 href={item.href}
-                className={`font-accent font-semibold text-sm lg:text-base uppercase tracking-wider transition-colors duration-300 hover:text-[#C5862B] ${
-                  isScrolled ? 'text-[#3A2B1A]' : 'text-white'
-                }`}
+                className="font-accent font-semibold text-sm lg:text-base uppercase tracking-wider transition-colors duration-300 hover:text-[#C5862B] text-white"
               >
                 {item.label}
               </a>
