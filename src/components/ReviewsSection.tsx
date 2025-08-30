@@ -73,10 +73,10 @@ export default function ReviewsSection({ reviews }: ReviewsSectionProps) {
     <section id="reviews" className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-[#F4E1C6]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
             What Our Clients Say
           </h2>
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#2E2B29]/80 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-[#2E2B29]/80 max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
             Don&apos;t just take our word for it - see what our clients have to say about our work
           </p>
         </div>

@@ -103,10 +103,10 @@ export default function Contact({ data, siteSettings }: ContactProps) {
           <div className="inline-block px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 bg-[#C5862B]/20 border border-[#C5862B]/30 rounded-full text-[#C5862B] font-accent text-xs sm:text-sm md:text-base uppercase tracking-wider mb-4 sm:mb-6 md:mb-8">
             Get In Touch
           </div>
-          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
+          <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
             Start Your Project Today
           </h2>
-          <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-[#2E2B29] max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
+          <p className="font-body text-sm sm:text-base md:text-lg lg:text-xl text-[#2E2B29] max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
             {data.contactIntro || 'Ready to discuss your next project? Get in touch and let&apos;s bring your ideas to life.'}
           </p>
         </div>
