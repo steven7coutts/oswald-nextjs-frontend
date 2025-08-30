@@ -281,3 +281,4 @@ NEXT_PUBLIC_SANITY_DATASET=production
 - **Sanity**: [Webhooks Guide](https://www.sanity.io/docs/webhooks)
 
 Choose the option that best fits your needs and budget. SendGrid is recommended for most businesses due to its reliability and generous free tier.
+
