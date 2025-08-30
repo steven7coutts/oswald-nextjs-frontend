@@ -61,7 +61,7 @@ export default function TrustIndicators({ className = '' }: TrustIndicatorsProps
 
   return (
     <div className={`trust-indicators ${className}`}>
-      <div className="flex items-center gap-6">
+      <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6">
         {trustPlatforms.map((platform) => (
           <button
             key={platform.id}
@@ -73,6 +73,7 @@ export default function TrustIndicators({ className = '' }: TrustIndicatorsProps
               bg-white/10 backdrop-blur-sm border border-white/20
               transition-all duration-300 cursor-pointer
               hover:bg-white/20 hover:border-white/40 hover:scale-105
+              w-full sm:w-auto justify-center sm:justify-start
               ${isHovered === platform.id ? 'bg-white/20 border-white/40' : ''}
             `}
             aria-label={`View our ${platform.name} reviews`}
@@ -117,8 +118,8 @@ export default function TrustIndicators({ className = '' }: TrustIndicatorsProps
       </div>
       
       {/* Trust Text */}
-      <div className="text-center mt-4">
-        <p className="text-white/70 text-sm font-medium">
+      <div className="text-center mt-4 sm:mt-6">
+        <p className="text-white/70 text-xs sm:text-sm font-medium px-4">
           Trusted by our clients • Click to see reviews
         </p>
       </div>
