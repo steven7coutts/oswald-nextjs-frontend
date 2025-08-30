@@ -37,9 +37,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Account for fixed header when using hash links */
+/* Account for sticky header when using hash links */
 section[id] {
-  scroll-margin-top: 120px; /* Base fallback for sections without specific scroll-margin */
+  scroll-margin-top: 20px; /* Minimal offset for sticky header */
 }
 
 /* Utilities */
