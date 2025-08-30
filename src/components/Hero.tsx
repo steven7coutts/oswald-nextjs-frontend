@@ -15,7 +15,7 @@ export default function Hero({ data }: HeroProps) {
   const titleParts = heroTitle.split('.').filter(Boolean)
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#3A2B1A] via-[#6B4226] to-[#2E2B29] pt-40 sm:pt-44 md:pt-48 lg:pt-52 xl:pt-56 scroll-mt-40 sm:scroll-mt-44 md:scroll-mt-48 lg:scroll-mt-52 xl:scroll-mt-56">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#3A2B1A] via-[#6B4226] to-[#2E2B29] pt-40 sm:pt-44 md:pt-48 lg:pt-52 xl:pt-56 pb-20 sm:pb-24 md:pb-28 lg:pb-32 xl:pb-36 2xl:pb-40 scroll-mt-40 sm:scroll-mt-44 md:scroll-mt-48 lg:scroll-mt-52 xl:scroll-mt-56">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
@@ -129,16 +129,16 @@ export default function Hero({ data }: HeroProps) {
           )}
         </div>
 
-        {/* Trust Indicators - Responsive spacing */}
-        <div className="mt-8 sm:mt-10 lg:mt-12 xl:mt-16 2xl:mt-20">
+        {/* Trust Indicators - Responsive spacing with extra bottom margin for scroll indicator */}
+        <div className="mt-8 sm:mt-10 lg:mt-12 xl:mt-16 2xl:mt-20 mb-16 sm:mb-20 md:mb-24 lg:mb-28 xl:mb-32 2xl:mb-36">
           <TrustIndicators />
         </div>
       </div>
 
-      {/* Scroll indicator - Responsive positioning */}
-      <div className="absolute bottom-4 sm:bottom-6 lg:bottom-8 xl:bottom-10 2xl:bottom-12 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <div className="w-5 h-8 sm:w-6 sm:h-10 lg:w-7 lg:h-12 xl:w-8 xl:h-14 border-2 border-[#F4E1C6]/30 rounded-full flex justify-center">
-          <div className="w-1 h-2 sm:h-3 lg:h-4 bg-[#C5862B] rounded-full mt-2 animate-pulse"></div>
+      {/* Scroll indicator - Responsive positioning with better spacing */}
+      <div className="absolute bottom-6 sm:bottom-8 md:bottom-12 lg:bottom-16 xl:bottom-20 2xl:bottom-24 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+        <div className="w-5 h-8 sm:w-6 sm:h-10 md:w-7 md:h-12 lg:w-8 lg:h-14 xl:w-9 xl:h-16 2xl:w-10 2xl:h-18 border-2 border-[#F4E1C6]/30 rounded-full flex justify-center">
+          <div className="w-1 h-2 sm:h-3 md:h-4 lg:h-5 xl:h-6 2xl:h-7 bg-[#C5862B] rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>
