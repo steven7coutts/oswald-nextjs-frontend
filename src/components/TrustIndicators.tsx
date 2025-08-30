@@ -69,11 +69,11 @@ export default function TrustIndicators({ className = '' }: TrustIndicatorsProps
             onMouseEnter={() => setIsHovered(platform.id)}
             onMouseLeave={() => setIsHovered(null)}
             className={`
-              group flex items-center gap-3 px-4 py-3 rounded-lg
+              group flex items-center gap-3 px-3 py-2.5 rounded-lg
               bg-white/10 backdrop-blur-sm border border-white/20
               transition-all duration-300 cursor-pointer
               hover:bg-white/20 hover:border-white/40 hover:scale-105
-              w-full sm:w-auto justify-center sm:justify-start
+              w-auto justify-center
               ${isHovered === platform.id ? 'bg-white/20 border-white/40' : ''}
             `}
             aria-label={`View our ${platform.name} reviews`}
