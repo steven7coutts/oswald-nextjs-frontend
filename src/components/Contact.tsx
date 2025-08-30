@@ -53,12 +53,22 @@ export default function Contact({ data, siteSettings }: ContactProps) {
     
     try {
       const formDataToSend = new FormData()
-      Object.entries(formData).forEach(([key, value]) => {
-        if (key === 'files') {
-          formData.files.forEach(file => formDataToSend.append('files', file))
-        } else if (key !== 'honeypot') {
-          formDataToSend.append(key, value as string)
-        }
+      
+      // Add all form fields
+      formDataToSend.append('name', formData.name)
+      formDataToSend.append('phone', formData.phone)
+      formDataToSend.append('email', formData.email)
+      formDataToSend.append('postcode', formData.postcode)
+      formDataToSend.append('service', formData.service)
+      formDataToSend.append('budget', formData.budget)
+      formDataToSend.append('preferredTime', formData.preferredTime)
+      formDataToSend.append('projectDetails', formData.projectDetails)
+      formDataToSend.append('consent', formData.consent.toString())
+      formDataToSend.append('honeypot', formData.honeypot)
+      
+      // Add files
+      formData.files.forEach(file => {
+        formDataToSend.append('files', file)
       })
       
       const response = await fetch('/api/enquiry', {
@@ -66,16 +76,31 @@ export default function Contact({ data, siteSettings }: ContactProps) {
         body: formDataToSend
       })
       
-      if (response.ok) {
+      const result = await response.json()
+      
+      if (response.ok && result.success) {
         setSubmitStatus('success')
+        // Reset form
         setFormData({
-          name: '', phone: '', email: '', postcode: '', service: '', budget: '', preferredTime: '', projectDetails: '', files: [], consent: false, honeypot: ''
+          name: '', 
+          phone: '', 
+          email: '', 
+          postcode: '', 
+          service: '', 
+          budget: '', 
+          preferredTime: '', 
+          projectDetails: '', 
+          files: [], 
+          consent: false, 
+          honeypot: ''
         })
         setErrors({})
       } else {
+        console.error('Submission error:', result.error)
         setSubmitStatus('error')
       }
-    } catch {
+    } catch (error) {
+      console.error('Network error:', error)
       setSubmitStatus('error')
     } finally {
       setIsSubmitting(false)
