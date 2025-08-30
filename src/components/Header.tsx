@@ -23,7 +23,7 @@ export default function Header({ siteSettings }: HeaderProps) {
   ]
 
   return (
-    <header className="static z-50 bg-transparent">
+    <header className="static z-50 bg-transparent border-none shadow-none backdrop-blur-none" style={{ backgroundColor: 'transparent !important' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4 sm:py-5 lg:py-6">
           {/* Logo */}
@@ -71,7 +71,7 @@ export default function Header({ siteSettings }: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 sm:p-3 rounded-lg transition-colors duration-300 hover:bg-white/10"
+            className="lg:hidden p-2 sm:p-3 rounded-lg transition-colors duration-300 hover:bg-white/20 text-white"
           >
             <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMobileMenuOpen ? (
