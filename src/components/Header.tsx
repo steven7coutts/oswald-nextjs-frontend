@@ -40,12 +40,12 @@ export default function Header({ siteSettings }: HeaderProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-3 sm:py-4 lg:py-6">
+        <div className="flex items-center justify-between py-4 sm:py-5 lg:py-6">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="#home" className="flex items-center gap-2 sm:gap-3 lg:gap-4 group">
+            <a href="#home" className="flex items-center gap-3 sm:gap-4 lg:gap-5 group">
               {siteSettings?.logo && (
-                <div className="overflow-visible w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] lg:w-[160px] lg:h-[160px] xl:w-[200px] xl:h-[200px] flex-shrink-0">
+                <div className="overflow-visible w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] lg:w-[140px] lg:h-[140px] xl:w-[180px] xl:h-[180px] flex-shrink-0">
                   <Image
                     src={urlFor(siteSettings.logo).width(300).height(300).fit('crop').url()}
                     alt={siteSettings.brandName || 'Oswald Joinery'}
@@ -56,7 +56,7 @@ export default function Header({ siteSettings }: HeaderProps) {
                   />
                 </div>
               )}
-              <div className={`font-heading font-bold text-lg sm:text-xl lg:text-2xl xl:text-3xl transition-colors duration-300 ${
+              <div className={`font-heading font-bold text-base sm:text-lg lg:text-xl xl:text-2xl transition-colors duration-300 ${
                 isScrolled ? 'text-[#3A2B1A]' : 'text-white'
               }`}>
                 {siteSettings?.brandName?.split(' ')[0] || 'Oswald'}
