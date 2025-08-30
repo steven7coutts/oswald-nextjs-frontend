@@ -35,17 +35,17 @@ export default function Header({ siteSettings }: HeaderProps) {
     <header 
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled 
-          ? 'bg-white/90 backdrop-blur-md shadow-lg border-b border-brand-beige/20' 
+          ? 'bg-white/90 backdrop-blur-md shadow-lg border-b border-[#F4E1C6]/20' 
           : 'bg-white/0 backdrop-blur-md'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between py-4">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between py-3 sm:py-4 lg:py-6">
           {/* Logo */}
           <div className="flex items-center">
-            <a href="#home" className="flex items-center gap-4 group">
+            <a href="#home" className="flex items-center gap-2 sm:gap-3 lg:gap-4 group">
               {siteSettings?.logo && (
-                <div className="overflow-visible w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] flex-shrink-0">
+                <div className="overflow-visible w-[80px] h-[80px] sm:w-[120px] sm:h-[120px] lg:w-[160px] lg:h-[160px] xl:w-[200px] xl:h-[200px] flex-shrink-0">
                   <Image
                     src={urlFor(siteSettings.logo).width(300).height(300).fit('crop').url()}
                     alt={siteSettings.brandName || 'Oswald Joinery'}
@@ -56,8 +56,8 @@ export default function Header({ siteSettings }: HeaderProps) {
                   />
                 </div>
               )}
-              <div className={`font-heading font-bold text-2xl transition-colors duration-300 ${
-                isScrolled ? 'text-brand-dark' : 'text-white'
+              <div className={`font-heading font-bold text-lg sm:text-xl lg:text-2xl xl:text-3xl transition-colors duration-300 ${
+                isScrolled ? 'text-[#3A2B1A]' : 'text-white'
               }`}>
                 {siteSettings?.brandName?.split(' ')[0] || 'Oswald'}
               </div>
@@ -65,13 +65,13 @@ export default function Header({ siteSettings }: HeaderProps) {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className={`font-accent font-semibold text-sm uppercase tracking-wider transition-colors duration-300 hover:text-brand-gold ${
-                  isScrolled ? 'text-brand-dark' : 'text-white'
+                className={`font-accent font-semibold text-sm lg:text-base uppercase tracking-wider transition-colors duration-300 hover:text-[#C5862B] ${
+                  isScrolled ? 'text-[#3A2B1A]' : 'text-white'
                 }`}
               >
                 {item.label}
@@ -83,7 +83,7 @@ export default function Header({ siteSettings }: HeaderProps) {
           <div className="hidden lg:block">
             <a
               href="#contact"
-              className="px-6 py-3 bg-brand-gold hover:bg-brand-gold/90 text-brand-dark font-accent font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl"
+              className="px-4 sm:px-6 py-2 sm:py-3 bg-[#C5862B] hover:bg-[#C5862B]/90 text-[#3A2B1A] font-accent font-semibold rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl text-sm lg:text-base"
             >
               Get a Free Quote
             </a>
@@ -92,9 +92,9 @@ export default function Header({ siteSettings }: HeaderProps) {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 rounded-lg transition-colors duration-300"
+            className="lg:hidden p-2 sm:p-3 rounded-lg transition-colors duration-300 hover:bg-white/10"
           >
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {isMobileMenuOpen ? (
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               ) : (
@@ -106,23 +106,23 @@ export default function Header({ siteSettings }: HeaderProps) {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white/95 backdrop-blur-md rounded-b-2xl shadow-lg border-b border-brand-beige/20 mb-4">
-            <nav className="py-6 px-4 space-y-4">
+          <div className="lg:hidden bg-white/95 backdrop-blur-md rounded-b-2xl shadow-lg border-b border-[#F4E1C6]/20 mb-4">
+            <nav className="py-4 sm:py-6 px-4 sm:px-6 space-y-3 sm:space-y-4">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block font-accent font-semibold text-sm uppercase tracking-wider text-brand-dark hover:text-brand-gold transition-colors duration-300 py-2"
+                  className="block font-accent font-semibold text-sm sm:text-base uppercase tracking-wider text-[#3A2B1A] hover:text-[#C5862B] transition-colors duration-300 py-2 sm:py-3"
                 >
                   {item.label}
                 </a>
               ))}
-              <div className="pt-4 border-t border-brand-beige/20">
+              <div className="pt-3 sm:pt-4 border-t border-[#F4E1C6]/20">
                 <a
                   href="#contact"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block w-full px-6 py-3 bg-brand-gold hover:bg-brand-gold/90 text-brand-dark font-accent font-semibold rounded-lg text-center transition-all duration-300"
+                  className="block w-full px-4 sm:px-6 py-3 sm:py-4 bg-[#C5862B] hover:bg-[#C5862B]/90 text-[#3A2B1A] font-accent font-semibold rounded-lg text-center transition-all duration-300 text-sm sm:text-base"
                 >
                   Get a Free Quote
                 </a>
