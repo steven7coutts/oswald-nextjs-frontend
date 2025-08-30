@@ -28,7 +28,7 @@ export default function Header({ siteSettings }: HeaderProps) {
           <div className="flex items-center">
             <a href="#home" className="flex items-center gap-3 sm:gap-4 lg:gap-5 group">
               {siteSettings?.logo && (
-                <div className="overflow-visible w-[70px] h-[70px] sm:w-[100px] sm:h-[100px] lg:w-[140px] lg:h-[140px] xl:w-[180px] xl:h-[180px] flex-shrink-0">
+                <div className="overflow-visible w-[90px] h-[90px] sm:w-[100px] sm:h-[100px] lg:w-[140px] lg:h-[140px] xl:w-[180px] xl:h-[180px] flex-shrink-0">
                   <Image
                     src={urlFor(siteSettings.logo).width(300).height(300).fit('crop').url()}
                     alt={siteSettings.brandName || 'Oswald Joinery'}
