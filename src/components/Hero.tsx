@@ -130,15 +130,15 @@ export default function Hero({ data }: HeroProps) {
         </div>
 
         {/* Trust Indicators - Balanced spacing */}
-        <div className="mt-2 sm:mt-3 lg:mt-4 xl:mt-5 mb-2 sm:mb-3 md:mb-4 lg:mb-5 xl:mb-6">
+        <div className="mt-2 sm:mt-3 lg:mt-4 xl:mt-5 mb-1 sm:mb-2 md:mb-3 lg:mb-4 xl:mb-5">
           <TrustIndicators />
         </div>
-      </div>
 
-      {/* Scroll indicator - Balanced positioning */}
-      <div className="absolute bottom-1 sm:bottom-2 md:bottom-3 lg:bottom-4 xl:bottom-5 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-        <div className="w-5 h-8 sm:w-6 sm:h-10 md:w-7 md:h-12 lg:w-8 lg:h-14 xl:w-9 xl:h-16 border-2 border-[#F4E1C6]/50 rounded-full flex justify-center bg-[#3A2B1A]/20 backdrop-blur-sm">
-          <div className="w-1 h-2 sm:h-2.5 md:h-3 lg:h-4 xl:h-5 bg-[#C5862B] rounded-full mt-1.5 animate-pulse shadow-lg"></div>
+        {/* Scroll indicator - Close to trust indicators */}
+        <div className="mt-3 sm:mt-4 lg:mt-5 xl:mt-6 text-center">
+          <div className="inline-block w-5 h-8 sm:w-6 sm:h-10 md:w-7 md:h-12 lg:w-8 lg:h-14 xl:w-9 xl:h-16 border-2 border-[#F4E1C6]/50 rounded-full flex justify-center bg-[#3A2B1A]/20 backdrop-blur-sm animate-bounce">
+            <div className="w-1 h-2 sm:h-2.5 md:h-3 lg:h-4 xl:h-5 bg-[#C5862B] rounded-full mt-1.5 animate-pulse shadow-lg"></div>
+          </div>
         </div>
       </div>
     </section>
