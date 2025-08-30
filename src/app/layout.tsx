@@ -3,6 +3,7 @@ import { Inter, Playfair_Display, Roboto_Condensed } from "next/font/google";
 import "./globals.css";
 import Favicon from "@/components/Favicon";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { Suspense } from "react";
 
 const inter = Inter({ 
   subsets: ["latin"],
@@ -116,7 +117,9 @@ export default function RootLayout({
         <Favicon />
       </head>
       <body className={`${inter.variable} ${playfair.variable} ${robotoCondensed.variable} font-body antialiased`}>
-        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <GoogleAnalytics />
+        </Suspense>
         {children}
       </body>
     </html>

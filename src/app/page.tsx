@@ -10,7 +10,7 @@ import Portfolio from '@/components/Portfolio'
 import Contact from '@/components/Contact'
 import Footer from '@/components/Footer'
 import SEO from '@/components/SEO'
-import { HomepageData, SiteSettings, Service, Project, MissionValue, Location, SocialLink } from '@/lib/types'
+import { HomepageData, SiteSettings, Service, Project, MissionValue, Location } from '@/lib/types'
 import { unstable_cache } from 'next/cache'
 
 const getHomepageCached = unstable_cache(

@@ -26,7 +26,7 @@ export default function SEO({
   const businessName = siteSettings?.brandName || 'Oswald Joinery & Contractors'
   const phone = siteSettings?.phone || '07494734546'
   const email = siteSettings?.email || 'dougie@oswaldjoinery.com'
-  const address = siteSettings?.address || 'Perth, Perthshire'
+
 
   // JSON-LD Schema for Local Business
   const schemaData = {

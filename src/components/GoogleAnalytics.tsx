@@ -91,7 +91,7 @@ export const trackTimeOnPage = (seconds: number) => {
 }
 
 // Enhanced ecommerce tracking
-export const trackEcommerceEvent = (eventName: string, parameters: any) => {
+export const trackEcommerceEvent = (eventName: string, parameters: Record<string, unknown>) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, parameters)
   }
@@ -224,8 +224,8 @@ declare global {
     gtag: (
       command: 'config' | 'event' | 'js',
       targetId: string,
-      config?: any
+      config?: Record<string, unknown>
     ) => void
-    dataLayer: any[]
+    dataLayer: Record<string, unknown>[]
   }
 }
