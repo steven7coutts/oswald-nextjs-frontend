@@ -15,7 +15,7 @@ export default function Hero({ data }: HeroProps) {
   const titleParts = heroTitle.split('.').filter(Boolean)
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#3A2B1A] via-[#6B4226] to-[#2E2B29] pt-20 sm:pt-24 md:pt-28 lg:pt-32 xl:pt-36 pb-6 sm:pb-8 md:pb-10 lg:pb-12 xl:pb-16 scroll-mt-20 sm:scroll-mt-24 md:scroll-mt-28 lg:scroll-mt-32 xl:scroll-mt-36">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#3A2B1A] via-[#6B4226] to-[#2E2B29] pt-8 sm:pt-10 md:pt-12 lg:pt-16 xl:pt-20 pb-6 sm:pb-8 md:pb-10 lg:pb-12 xl:pb-16 scroll-mt-8 sm:scroll-mt-10 md:scroll-mt-12 lg:scroll-mt-16 xl:scroll-mt-20">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
@@ -38,7 +38,7 @@ export default function Hero({ data }: HeroProps) {
       {/* Content */}
       <div className="relative z-20 text-center text-white px-4 sm:px-6 lg:px-8 xl:px-12 max-w-4xl sm:max-w-5xl lg:max-w-6xl xl:max-w-7xl 2xl:max-w-8xl mx-auto">
         {/* Pre-title Badge */}
-        <div className="mt-8 sm:mt-12 md:mt-16 lg:mt-20 xl:mt-24 mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
+        <div className="mt-0 sm:mt-2 md:mt-3 lg:mt-4 xl:mt-6 mb-3 sm:mb-4 lg:mb-5 xl:mb-6">
           <span className="inline-block px-3 sm:px-4 lg:px-5 xl:px-6 py-1.5 sm:py-2 lg:py-2.5 xl:py-3 bg-[#C5862B]/20 border border-[#C5862B]/30 rounded-full text-[#C5862B] font-accent text-xs sm:text-sm lg:text-base xl:text-lg uppercase tracking-wider shadow-lg backdrop-blur-sm">
             Perth&apos;s Premier Joinery
           </span>

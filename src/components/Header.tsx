@@ -23,7 +23,7 @@ export default function Header({ siteSettings }: HeaderProps) {
   ]
 
   return (
-    <header className="static z-50 bg-white/0 backdrop-blur-md">
+    <header className="static z-50 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-4 sm:py-5 lg:py-6">
           {/* Logo */}
@@ -41,9 +41,7 @@ export default function Header({ siteSettings }: HeaderProps) {
                   />
                 </div>
               )}
-              <div className="font-heading font-bold text-base sm:text-lg lg:text-xl xl:text-2xl transition-colors duration-300 text-white">
-                {siteSettings?.brandName?.split(' ')[0] || 'Oswald'}
-              </div>
+
             </a>
           </div>
 
@@ -53,7 +51,7 @@ export default function Header({ siteSettings }: HeaderProps) {
               <a
                 key={item.label}
                 href={item.href}
-                className="font-accent font-semibold text-sm lg:text-base uppercase tracking-wider transition-colors duration-300 hover:text-[#C5862B] text-white"
+                className="font-accent font-semibold text-sm lg:text-base uppercase tracking-wider transition-colors duration-300 hover:text-[#C5862B] text-white font-heading"
               >
                 {item.label}
               </a>
@@ -87,14 +85,14 @@ export default function Header({ siteSettings }: HeaderProps) {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-white/95 backdrop-blur-md rounded-b-2xl shadow-lg border-b border-[#F4E1C6]/20 mb-4">
+          <div className="lg:hidden bg-[#3A2B1A]/95 backdrop-blur-md rounded-b-2xl shadow-lg border border-[#F4E1C6]/20 mb-4">
             <nav className="py-4 sm:py-6 px-4 sm:px-6 space-y-3 sm:space-y-4">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="block font-accent font-semibold text-sm sm:text-base uppercase tracking-wider text-[#3A2B1A] hover:text-[#C5862B] transition-colors duration-300 py-2 sm:py-3"
+                  className="block font-accent font-semibold text-sm sm:text-base uppercase tracking-wider text-[#3A2B1A] hover:text-[#C5862B] transition-colors duration-300 py-2 sm:py-3 font-heading"
                 >
                   {item.label}
                 </a>
