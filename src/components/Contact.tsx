@@ -96,27 +96,27 @@ export default function Contact({ data, siteSettings }: ContactProps) {
   if (!data || !siteSettings) return null
 
   return (
-    <section id="contact" className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-4">
+    <section id="contact" className="py-16 sm:py-20 md:py-24 lg:py-28 xl:py-32 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         {/* Section Header */}
-        <div className="text-center mb-20">
-          <div className="inline-block px-4 py-2 bg-[#C5862B]/20 border border-[#C5862B]/30 rounded-full text-[#C5862B] font-accent text-sm uppercase tracking-wider mb-6">
+        <div className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24">
+          <div className="inline-block px-3 sm:px-4 md:px-6 py-2 sm:py-3 md:py-4 bg-[#C5862B]/20 border border-[#C5862B]/30 rounded-full text-[#C5862B] font-accent text-xs sm:text-sm md:text-base uppercase tracking-wider mb-4 sm:mb-6 md:mb-8">
             Get In Touch
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-[#3A2B1A] mb-6">
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8 leading-tight">
             Start Your Project Today
           </h2>
-          <p className="font-body text-xl text-[#2E2B29] max-w-3xl mx-auto leading-relaxed">
+          <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-[#2E2B29] max-w-3xl lg:max-w-4xl mx-auto leading-relaxed px-4">
             {data.contactIntro || 'Ready to discuss your next project? Get in touch and let&apos;s bring your ideas to life.'}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-20">
           {/* Contact Form */}
-          <div className="bg-[#F4E1C6]/30 rounded-2xl p-8 border border-[#F4E1C6]/50">
-            <h3 className="font-heading text-2xl font-bold text-[#3A2B1A] mb-6">Request a Free Quote</h3>
+          <div className="bg-[#F4E1C6]/30 rounded-2xl p-4 sm:p-6 md:p-8 lg:p-10 border border-[#F4E1C6]/50">
+            <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8">Request a Free Quote</h3>
             
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-4 sm:space-y-6 md:space-y-8" onSubmit={handleSubmit}>
               {/* Hidden honeypot field */}
               <input
                 type="text"
@@ -128,66 +128,66 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                 autoComplete="off"
               />
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Name *</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Name *</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
-                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60 text-sm sm:text-base"
                     placeholder="Your full name"
                   />
-                  {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                  {errors.name && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.name}</p>}
                 </div>
                 <div>
-                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Phone *</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Phone *</label>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
                     onChange={(e) => setFormData(prev => ({ ...prev, phone: e.target.value }))}
-                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60 text-sm sm:text-base"
                     placeholder="Your phone number"
                   />
-                  {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+                  {errors.phone && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.phone}</p>}
                 </div>
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Email *</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Email *</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
-                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60 text-sm sm:text-base"
                     placeholder="your.email@example.com"
                   />
-                  {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                  {errors.email && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.email}</p>}
                 </div>
                 <div>
-                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Postcode *</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Postcode *</label>
                   <input
                     type="text"
                     required
                     value={formData.postcode}
                     onChange={(e) => setFormData(prev => ({ ...prev, postcode: e.target.value }))}
-                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60 text-sm sm:text-base"
                     placeholder="e.g. PH1 1AA"
                   />
-                  {errors.postcode && <p className="text-red-500 text-sm mt-1">{errors.postcode}</p>}
+                  {errors.postcode && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.postcode}</p>}
                 </div>
               </div>
               
               <div>
-                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Service Required *</label>
+                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Service Required *</label>
                 <select 
                   value={formData.service}
                   onChange={(e) => setFormData(prev => ({ ...prev, service: e.target.value }))}
-                  className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] placeholder-[#6B4226]/60 text-sm sm:text-base"
                 >
                   <option value="">Select a service</option>
                   <option value="kitchens">Kitchens</option>
@@ -202,13 +202,13 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                 {errors.service && <p className="text-red-500 text-sm mt-1">{errors.service}</p>}
               </div>
               
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Budget Range</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Budget Range</label>
                   <select
                     value={formData.budget}
                     onChange={(e) => setFormData(prev => ({ ...prev, budget: e.target.value }))}
-                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29]"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] text-sm sm:text-base"
                   >
                     <option value="">Select budget range</option>
                     <option value="under-5k">Under £5,000</option>
@@ -219,11 +219,11 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                   </select>
                 </div>
                 <div>
-                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Preferred Contact Time</label>
+                  <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Preferred Contact Time</label>
                   <select
                     value={formData.preferredTime}
                     onChange={(e) => setFormData(prev => ({ ...prev, preferredTime: e.target.value }))}
-                    className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29]"
+                    className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body text-[#2E2B29] text-sm sm:text-base"
                   >
                     <option value="">Select preferred time</option>
                     <option value="morning">Morning (9am-12pm)</option>
@@ -235,22 +235,22 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               </div>
               
               <div>
-                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Project Details *</label>
+                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Project Details *</label>
                 <textarea
                   rows={4}
                   required
                   value={formData.projectDetails}
                   onChange={(e) => setFormData(prev => ({ ...prev, projectDetails: e.target.value }))}
-                  className="w-full px-4 py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body resize-none text-[#2E2B29] placeholder-[#6B4226]/60"
+                  className="w-full px-3 sm:px-4 py-2 sm:py-3 border border-[#F4E1C6]/50 rounded-lg focus:border-[#C5862B] focus:ring-2 focus:ring-[#C5862B]/20 transition-all duration-300 font-body resize-none text-[#2E2B29] placeholder-[#6B4226]/60 text-sm sm:text-base"
                   placeholder="Tell us about your project..."
                 ></textarea>
-                {errors.projectDetails && <p className="text-red-500 text-sm mt-1">{errors.projectDetails}</p>}
+                {errors.projectDetails && <p className="text-red-500 text-xs sm:text-sm mt-1">{errors.projectDetails}</p>}
               </div>
               
               {/* File Upload */}
               <div>
-                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2">Upload Photos/Plans (Optional)</label>
-                <div className="border-2 border-dashed border-[#F4E1C6]/50 rounded-lg p-6 text-center hover:border-[#C5862B]/50 transition-colors duration-300">
+                <label className="block font-accent font-semibold text-[#3A2B1A] mb-2 text-sm sm:text-base">Upload Photos/Plans (Optional)</label>
+                <div className="border-2 border-dashed border-[#F4E1C6]/50 rounded-lg p-4 sm:p-6 text-center hover:border-[#C5862B]/50 transition-colors duration-300">
                   <input
                     type="file"
                     multiple
@@ -261,12 +261,12 @@ export default function Contact({ data, siteSettings }: ContactProps) {
                   />
                   <label htmlFor="file-upload" className="cursor-pointer">
                     <div className="text-[#C5862B] mb-2">
-                      <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-6 h-6 sm:w-8 sm:h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                       </svg>
                     </div>
-                    <p className="text-[#3A2B1A] font-medium">Click to upload files</p>
-                    <p className="text-[#2E2B29]/60 text-sm">Images, PDFs up to 10MB total</p>
+                    <p className="text-[#3A2B1A] font-medium text-sm sm:text-base">Click to upload files</p>
+                    <p className="text-[#2E2B29]/60 text-xs sm:text-sm">Images, PDFs up to 10MB total</p>
                   </label>
                 </div>
                 
@@ -310,12 +310,12 @@ export default function Contact({ data, siteSettings }: ContactProps) {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-[#C5862B] hover:bg-[#C5862B]/90 disabled:bg-[#C5862B]/50 text-[#3A2B1A] font-accent font-semibold py-4 px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl disabled:transform-none disabled:cursor-not-allowed"
+                className="w-full bg-[#C5862B] hover:bg-[#C5862B]/90 disabled:bg-[#C5862B]/50 text-[#3A2B1A] font-accent font-semibold py-3 sm:py-4 md:py-5 px-6 sm:px-8 rounded-lg transition-all duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl disabled:transform-none disabled:cursor-not-allowed text-sm sm:text-base md:text-lg"
               >
                 {isSubmitting ? (
                   <div className="flex items-center justify-center gap-2">
-                    <div className="w-5 h-5 border-2 border-[#3A2B1A]/20 border-t-[#3A2B1A] rounded-full animate-spin"></div>
-                    Sending...
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-[#3A2B1A]/20 border-t-[#3A2B1A] rounded-full animate-spin"></div>
+                    <span className="text-sm sm:text-base">Sending...</span>
                   </div>
                 ) : (
                   'Send Message'
@@ -340,11 +340,11 @@ export default function Contact({ data, siteSettings }: ContactProps) {
           </div>
 
           {/* Contact Information */}
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8 md:space-y-10">
             <div>
-              <h3 className="font-heading text-2xl font-bold text-[#3A2B1A] mb-6">Contact Information</h3>
+              <h3 className="font-heading text-xl sm:text-2xl md:text-3xl font-bold text-[#3A2B1A] mb-4 sm:mb-6 md:mb-8">Contact Information</h3>
               
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4 md:space-y-6">
                 <div className="flex items-start gap-4">
                   <div className="w-12 h-12 bg-[#C5862B]/20 rounded-full flex items-center justify-center flex-shrink-0">
                     <svg className="w-6 h-6 text-[#C5862B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -398,13 +398,13 @@ export default function Contact({ data, siteSettings }: ContactProps) {
 
             {/* Service Areas */}
             <div>
-              <h4 className="font-heading text-xl font-bold text-[#3A2B1A] mb-4">Service Areas</h4>
-              <p className="font-body text-[#2E2B29]/80 mb-4">
+              <h4 className="font-heading text-lg sm:text-xl md:text-2xl font-bold text-[#3A2B1A] mb-3 sm:mb-4 md:mb-6">Service Areas</h4>
+              <p className="font-body text-[#2E2B29]/80 mb-3 sm:mb-4 md:mb-6 text-sm sm:text-base">
                 We proudly serve Perth and surrounding areas within 30 miles, including:
               </p>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {['Perth', 'Scone', 'Dunkeld', 'Crieff', 'Stirling', 'Dundee'].map((location) => (
-                  <span key={location} className="px-3 py-1 bg-[#C5862B]/20 text-[#3A2B1A] font-accent text-sm rounded-full">
+                  <span key={location} className="px-2 sm:px-3 py-1 sm:py-2 bg-[#C5862B]/20 text-[#3A2B1A] font-accent text-xs sm:text-sm rounded-full">
                     {location}
                   </span>
                 ))}
